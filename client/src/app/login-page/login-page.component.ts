@@ -16,4 +16,6 @@ export class LoginPageComponent {
   handleSubmit() {
     console.log(this.loginForm);
   }
+  googleOAuth() {}
+  facebookOAuth() {}
 }

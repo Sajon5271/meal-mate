@@ -9,4 +9,7 @@ export class SecondaryButtonComponent {
   @Input() type: string = 'button';
   @Input() text: string = '';
   @Output() clicked = new EventEmitter();
+  handleClick(): void {
+    this.clicked.emit();
+  }
 }

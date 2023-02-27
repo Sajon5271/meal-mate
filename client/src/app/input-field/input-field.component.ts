@@ -1,5 +1,9 @@
 import { Component, Input, Output } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormControl,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-input-field',
@@ -21,22 +25,22 @@ export class InputFieldComponent implements ControlValueAccessor {
   @Input() required: boolean = false;
   @Input() minLength: number = 0;
   @Input() maxLength: number = 100;
+  @Input() controller!: FormControl;
 
+  invalid = true;
   value: string = '';
   onChange = (val: any) => {};
   onTouched = () => {};
 
   touched = false;
 
-  ngOnInit() {
-    console.log(this.value);
-  }
   onValueChange(evt: any) {
     this.markTouched();
     // No need to check as I will disable input field based on disabled value
     // if(!this.disabled){
     // }
     this.value = evt.target.value;
+    console.log(this.isValid());
     this.onChange(this.value);
   }
 
@@ -44,6 +48,10 @@ export class InputFieldComponent implements ControlValueAccessor {
     this.value = obj;
   }
 
+  isValid(): boolean {
+    if (this.touched && this.controller.invalid) return true;
+    return false;
+  }
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }

@@ -1,0 +1,7 @@
+.primaryButton {
+  min-width: 70vw;
+  min-height: 4em;
+}
+.mat-mdc-unelevated-button:not(:disabled) {
+  background-color: #23233c;
+}
