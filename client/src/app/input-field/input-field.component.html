@@ -1,0 +1,25 @@
+<mat-form-field class="inputField">
+  <mat-label>{{ title | titlecase }}</mat-label>
+  <input
+    matInput
+    [type]="inputType"
+    [(ngModel)]="value"
+    (input)="onValueChange($event)"
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    [minLength]="minLength"
+    [maxLength]="maxLength"
+    [required]="required"
+  />
+  <!-- <mat-error
+      *ngIf="
+        emailFormControl.hasError('email') &&
+        !emailFormControl.hasError('required')
+      "
+    >
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error> -->
+</mat-form-field>

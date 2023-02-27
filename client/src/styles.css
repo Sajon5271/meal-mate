@@ -7,11 +7,13 @@
 *::before {
   box-sizing: border-box;
 }
+/*--------------Angular Material UI------------------*/
 
 body {
   margin: 0;
-  background-color: #f4f5fa;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+/*--------------Angular Material UI done------------------*/
 
 h3 {
   font-family: "Pacifico";
@@ -36,4 +38,7 @@ h3 {
 
 .black-text {
   color: #1e2421;
+}
+.gray-text {
+  color: #4f5854;
 }
