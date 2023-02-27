@@ -1,0 +1,47 @@
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+.signUpFormContainer {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.forgotPassword {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  padding-top: 18px;
+}
+
+.linkText {
+  color: #339166;
+  padding-left: 0.5ch;
+}
+
+.socialMedia {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+  gap: 21px;
+  width: 100%;
+  /* height: 200px; */
+}
+
+.backGround {
+  position: absolute;
+  top: 50%;
+  left: -9%;
+  z-index: -999;
+  transform: scaleX(-1);
+}

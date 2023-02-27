@@ -11,9 +11,10 @@ import { MaterialUIModule } from './material-ui/material-ui.module';
 import { InputFieldComponent } from './input-field/input-field.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SecondaryButtonComponent } from './secondary-button/secondary-button.component';
+import { SignupPageComponent } from './signup-page/signup-page.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginPageComponent, InputFieldComponent, SecondaryButtonComponent],
+  declarations: [AppComponent, LoginPageComponent, InputFieldComponent, SecondaryButtonComponent, SignupPageComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
