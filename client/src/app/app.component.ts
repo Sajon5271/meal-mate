@@ -12,6 +12,7 @@ export class AppComponent {
   constructor(private authClient: AuthenticateServiceService) {}
 
   cloc() {
+    window.sessionStorage.clear();
     this.authClient.OAuthLogin();
   }
 }

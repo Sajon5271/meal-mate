@@ -21,7 +21,9 @@ export class AuthenticateServiceService {
   constructor(
     private http: HttpClient,
     private readonly oAuthService: OAuthService
-  ) {
+  ) {}
+
+  OAuthLogin(): any {
     this.oAuthService.configure(googleOauthConfig);
     this.oAuthService.loadDiscoveryDocument().then(() => {
       this.oAuthService.tryLoginImplicitFlow().then(() => {
@@ -35,6 +37,4 @@ export class AuthenticateServiceService {
       });
     });
   }
-
-  OAuthLogin(): any {}
 }

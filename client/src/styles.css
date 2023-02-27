@@ -1,1 +1,39 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #f4f5fa;
+}
+
+h3 {
+  font-family: "Pacifico";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 70px;
+  text-align: center;
+  color: #1e2421;
+}
+
+.mediumText {
+  font-family: "Brevia";
+  font-style: normal;
+  font-weight: 500;
+}
+.lightText {
+  font-family: "Brevia";
+  font-style: normal;
+  font-weight: 300;
+}
+
+.black-text {
+  color: #1e2421;
+}

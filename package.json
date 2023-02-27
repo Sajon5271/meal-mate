@@ -1,0 +1,22 @@
+{
+  "name": "meal-mate",
+  "version": "1.0.0",
+  "description": "An app that will recommend you a meal plan based on your physique.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sajon5271/meal-mate.git"
+  },
+  "author": "Sajon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sajon5271/meal-mate/issues"
+  },
+  "homepage": "https://github.com/Sajon5271/meal-mate#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
