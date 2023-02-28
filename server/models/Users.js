@@ -1,3 +1,4 @@
+const { PORT } = require('../configs');
 const mongoose = require('../db');
 const { mealSchema } = require('./Meals');
 
@@ -14,86 +15,89 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    familyName: {
-      type: String,
+    oAuthUser: {
+      type: Boolean,
+      required: true,
+      default: false,
     },
     picturePath: {
       type: String,
       required: true,
-      default: 'profile.jpg',
+      default: `http://localhost:${PORT}/images/user/profile.jpg`,
     },
-    currentWeight: {
-      type: Number,
-      required: true,
+    dataAlreadyGiven: {
+      type: Boolean,
+      default: false,
     },
-    currentHeight: {
-      type: Number,
-      required: true,
-    },
-    sex: {
-      type: String,
-      required: true,
-    },
-    age: {
-      type: Number,
-      required: true,
-    },
-    activityLevel: {
-      type: String,
-      required: true,
-      default: 'sedentary',
-    },
-    weightGoal: {
-      type: String,
-      required: true,
-      default: 'mildWeightLoss',
+    userData: {
+      currentWeight: {
+        type: Number,
+      },
+      currentHeight: {
+        type: Number,
+      },
+      sex: {
+        type: String,
+      },
+      age: {
+        type: Number,
+      },
+      activityLevel: {
+        type: String,
+        default: 'sedentary',
+      },
+      weightGoal: {
+        type: String,
+        default: 'mildWeightLoss',
+      },
+      calculatedDailyCalorie: {
+        type: Number,
+        default: 2000,
+      },
     },
     mealPlan: {
-      type: {
-        saturday: {
-          breakfast: [mealSchema],
-          lunch: [mealSchema],
-          snacks: [mealSchema],
-          dinner: [mealSchema],
-        },
-        sunday: {
-          breakfast: [mealSchema],
-          lunch: [mealSchema],
-          snacks: [mealSchema],
-          dinner: [mealSchema],
-        },
-        monday: {
-          breakfast: [mealSchema],
-          lunch: [mealSchema],
-          snacks: [mealSchema],
-          dinner: [mealSchema],
-        },
-        tuesday: {
-          breakfast: [mealSchema],
-          lunch: [mealSchema],
-          snacks: [mealSchema],
-          dinner: [mealSchema],
-        },
-        wednesday: {
-          breakfast: [mealSchema],
-          lunch: [mealSchema],
-          snacks: [mealSchema],
-          dinner: [mealSchema],
-        },
-        thursday: {
-          breakfast: [mealSchema],
-          lunch: [mealSchema],
-          snacks: [mealSchema],
-          dinner: [mealSchema],
-        },
-        friday: {
-          breakfast: [mealSchema],
-          lunch: [mealSchema],
-          snacks: [mealSchema],
-          dinner: [mealSchema],
-        },
+      saturday: {
+        breakfast: [mealSchema],
+        lunch: [mealSchema],
+        snacks: [mealSchema],
+        dinner: [mealSchema],
       },
-      required: true,
+      sunday: {
+        breakfast: [mealSchema],
+        lunch: [mealSchema],
+        snacks: [mealSchema],
+        dinner: [mealSchema],
+      },
+      monday: {
+        breakfast: [mealSchema],
+        lunch: [mealSchema],
+        snacks: [mealSchema],
+        dinner: [mealSchema],
+      },
+      tuesday: {
+        breakfast: [mealSchema],
+        lunch: [mealSchema],
+        snacks: [mealSchema],
+        dinner: [mealSchema],
+      },
+      wednesday: {
+        breakfast: [mealSchema],
+        lunch: [mealSchema],
+        snacks: [mealSchema],
+        dinner: [mealSchema],
+      },
+      thursday: {
+        breakfast: [mealSchema],
+        lunch: [mealSchema],
+        snacks: [mealSchema],
+        dinner: [mealSchema],
+      },
+      friday: {
+        breakfast: [mealSchema],
+        lunch: [mealSchema],
+        snacks: [mealSchema],
+        dinner: [mealSchema],
+      },
     },
   },
   { timestamps: true }
