@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthenticateServiceService } from '../authenticate-service.service';
 
 @Component({
   selector: 'app-login-page',
@@ -7,7 +8,10 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthenticateServiceService
+  ) {}
 
   loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
@@ -16,6 +20,10 @@ export class LoginPageComponent {
   handleSubmit() {
     console.log(this.loginForm);
   }
-  googleOAuth() {}
-  facebookOAuth() {}
+  googleOAuth() {
+    this.authService.googleOAuthLogin();
+  }
+  facebookOAuth() {
+    this.authService.facebookOAuthLogin();
+  }
 }

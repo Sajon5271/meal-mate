@@ -4,7 +4,8 @@
   "description": "An app that will recommend you a meal plan based on your physique.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:server": "nodemon server/index.js",
+    "start:client": "cd client && ng serve"
   },
   "repository": {
     "type": "git",

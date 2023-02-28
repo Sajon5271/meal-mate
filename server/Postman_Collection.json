@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "42490210-9639-4f1e-9d90-8ff0380d95e9",
+		"name": "Meal Mate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22644339"
+	},
+	"item": [
+		{
+			"name": "Get All Meals",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/all",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create A Meal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"mealName\": \"Roti\",\r\n    \"mealCalorie\": 106,\r\n    \"mealLabel\": \"breakfast\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/createOne",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"createOne"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Multiple Meals",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"mealName\": \"Roti\",\r\n        \"mealCalorie\": 106,\r\n        \"mealLabel\": \"breakfast\",\r\n        \"mealPicture\": \"roti.jpg\"\r\n    },\r\n    {\r\n        \"mealName\": \"Dal\",\r\n        \"mealCalorie\": 198,\r\n        \"mealLabel\": \"any\",\r\n        \"mealPicture\": \"dal.jpg\"\r\n    },\r\n    {\r\n        \"mealName\": \"Milk Tea with sugar\",\r\n        \"mealCalorie\": 40,\r\n        \"mealLabel\": \"any\",\r\n        \"mealPicture\": \"milk-tea.jpg\"\r\n    },\r\n    {\r\n        \"mealName\": \"Rice\",\r\n        \"mealCalorie\": 205,\r\n        \"mealLabel\": \"any\",\r\n        \"mealPicture\": \"rice.jpg\"\r\n    },\r\n    {\r\n        \"mealName\": \"Beef Kala Vuna\",\r\n        \"mealCalorie\": 225,\r\n        \"mealLabel\": \"any\",\r\n        \"mealPicture\": \"beef-kala-vuna.jpg\"\r\n    },\r\n    {\r\n        \"mealName\": \"Mixed Vegetables\",\r\n        \"mealCalorie\": 150,\r\n        \"mealLabel\": \"any\",\r\n        \"mealPicture\": \"mixed-vegetables.jpg\"\r\n    },\r\n    {\r\n        \"mealName\": \"Puri\",\r\n        \"mealCalorie\": 110,\r\n        \"mealLabel\": \"snacks\",\r\n        \"mealPicture\": \"puri.jpg\"\r\n    },\r\n    {\r\n        \"mealName\": \"Rui\",\r\n        \"mealCalorie\": 130,\r\n        \"mealLabel\": \"any\",\r\n        \"mealPicture\": \"rui.jpg\"\r\n    },\r\n    {\r\n        \"mealName\": \"Apple\",\r\n        \"mealCalorie\": 95,\r\n        \"mealPicture\": \"apple.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 182\r\n    },\r\n    {\r\n        \"mealName\": \"Banana\",\r\n        \"mealCalorie\": 111,\r\n        \"mealPicture\": \"banana.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 125\r\n    },\r\n    {\r\n        \"mealName\": \"Dates\",\r\n        \"mealCalorie\": 20,\r\n        \"mealPicture\": \"dates.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 7\r\n    },\r\n    {\r\n        \"mealName\": \"Fruit salad\",\r\n        \"mealCalorie\": 125,\r\n        \"mealPicture\": \"fruitsalad.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 249\r\n    },\r\n    {\r\n        \"mealName\": \"Grapes\",\r\n        \"mealCalorie\": 104,\r\n        \"mealPicture\": \"grapes.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 151\r\n    },\r\n    {\r\n        \"mealName\": \"Guava\",\r\n        \"mealCalorie\": 37,\r\n        \"mealPicture\": \"guava.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 55\r\n    },\r\n    {\r\n        \"mealName\": \"Jackfruit\",\r\n        \"mealCalorie\": 143,\r\n        \"mealPicture\": \"jackfruit.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 151\r\n    },\r\n    {\r\n        \"mealName\": \"Lemon\",\r\n        \"mealCalorie\": 17,\r\n        \"mealPicture\": \"lemon.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 58\r\n    },\r\n    {\r\n        \"mealName\": \"Mango\",\r\n        \"mealCalorie\": 202,\r\n        \"mealPicture\": \"mango.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 336\r\n    },\r\n    {\r\n        \"mealName\": \"Orange\",\r\n        \"mealCalorie\": 62,\r\n        \"mealPicture\": \"orange.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 131\r\n    },\r\n    {\r\n        \"mealName\": \"Papaya\",\r\n        \"mealCalorie\": 215,\r\n        \"mealPicture\": \"papaya.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 500\r\n    },\r\n    {\r\n        \"mealName\": \"Pineapple\",\r\n        \"mealCalorie\": 453,\r\n        \"mealPicture\": \"pineapple.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 905\r\n    },\r\n    {\r\n        \"mealName\": \"Biryani\",\r\n        \"mealCalorie\": 484,\r\n        \"mealPicture\": \"biryani.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 275\r\n    },\r\n    {\r\n        \"mealName\": \"Fried Rice\",\r\n        \"mealCalorie\": 662,\r\n        \"mealPicture\": \"friedrice.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 356\r\n    },\r\n    {\r\n        \"mealName\": \"Grilled Cheese Sandwich\",\r\n        \"mealCalorie\": 392,\r\n        \"mealPicture\": \"grilledcheesesandwich.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 136\r\n    },\r\n    {\r\n        \"mealName\": \"Kebab\",\r\n        \"mealCalorie\": 774,\r\n        \"mealPicture\": \"kebab.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 360\r\n    },\r\n    {\r\n        \"mealName\": \"Mashed Potatoes\",\r\n        \"mealCalorie\": 174,\r\n        \"mealPicture\": \"mashedpotatoes.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 210\r\n    },\r\n    {\r\n        \"mealName\": \"Naan\",\r\n        \"mealCalorie\": 260,\r\n        \"mealPicture\": \"naan.jpg\",\r\n        \"mealLabel\": \"breakfast\",\r\n        \"servingMeasureInGm\": 84\r\n    },\r\n    {\r\n        \"mealName\": \"Paratha\",\r\n        \"mealCalorie\": 260,\r\n        \"mealPicture\": \"paratha.jpg\",\r\n        \"mealLabel\": \"breakfast\",\r\n        \"servingMeasureInGm\": 80\r\n    },\r\n    {\r\n        \"mealName\": \"Pizza\",\r\n        \"mealCalorie\": 272,\r\n        \"mealPicture\": \"pizza.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 102\r\n    },\r\n    {\r\n        \"mealName\": \"Ramen\",\r\n        \"mealCalorie\": 380,\r\n        \"mealPicture\": \"ramen.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 85\r\n    },\r\n    {\r\n        \"mealName\": \"Roast Beef\",\r\n        \"mealCalorie\": 23,\r\n        \"mealPicture\": \"roastbeef.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 21\r\n    },\r\n    {\r\n        \"mealName\": \"Samosa\",\r\n        \"mealCalorie\": 107,\r\n        \"mealPicture\": \"samosa.jpg\",\r\n        \"mealLabel\": \"snack\",\r\n        \"servingMeasureInGm\": 50\r\n    },\r\n    {\r\n        \"mealName\": \"Tandoori Chicken\",\r\n        \"mealCalorie\": 198,\r\n        \"mealPicture\": \"tandoorichicken.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 175\r\n    },\r\n    {\r\n        \"mealName\": \"Chicken Noodle Soup\",\r\n        \"mealCalorie\": 62,\r\n        \"mealPicture\": \"chickennoodlesoup.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 248\r\n    },\r\n    {\r\n        \"mealName\": \"Mushroom Soup\",\r\n        \"mealCalorie\": 85,\r\n        \"mealPicture\": \"mushroomsoup.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 244\r\n    },\r\n    {\r\n        \"mealName\": \"Noodle Soup\",\r\n        \"mealCalorie\": 83,\r\n        \"mealPicture\": \"noodlesoup.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 244\r\n    },\r\n    {\r\n        \"mealName\": \"Thai Soup\",\r\n        \"mealCalorie\": 147,\r\n        \"mealPicture\": \"thaisoup.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 245\r\n    },\r\n    {\r\n        \"mealName\": \"Tomato Soup\",\r\n        \"mealCalorie\": 74,\r\n        \"mealPicture\": \"tomatosoup.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 248\r\n    },\r\n    {\r\n        \"mealName\": \"Vegetable Soup\",\r\n        \"mealCalorie\": 67,\r\n        \"mealPicture\": \"vegetablesoup.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 241\r\n    },\r\n    {\r\n        \"mealName\": \"Chocolate Ice Cream\",\r\n        \"mealCalorie\": 156,\r\n        \"mealPicture\": \"chocolateicecream.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 72\r\n    },\r\n    {\r\n        \"mealName\": \"Egg Noodles\",\r\n        \"mealCalorie\": 146,\r\n        \"mealPicture\": \"eggnoodles.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 38\r\n    },\r\n    {\r\n        \"mealName\": \"Low Carb Pasta\",\r\n        \"mealCalorie\": 158,\r\n        \"mealPicture\": \"lowcarbpasta.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 56\r\n    },\r\n    {\r\n        \"mealName\": \"Spaghetti\",\r\n        \"mealCalorie\": 207,\r\n        \"mealPicture\": \"spaghetti.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 56\r\n    },\r\n    {\r\n        \"mealName\": \"BBQ Chicken Pizza\",\r\n        \"mealCalorie\": 309,\r\n        \"mealPicture\": \"pizza.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 132\r\n    },\r\n    {\r\n        \"mealName\": \"BBQ Pizza\",\r\n        \"mealCalorie\": 314,\r\n        \"mealPicture\": \"pizza.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 140\r\n    },\r\n    {\r\n        \"mealName\": \"Beef Pizza\",\r\n        \"mealCalorie\": 714,\r\n        \"mealPicture\": \"pizza.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 235\r\n    },\r\n    {\r\n        \"mealName\": \"Vegetable Pizza\",\r\n        \"mealCalorie\": 399,\r\n        \"mealPicture\": \"pizza.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 156\r\n    },\r\n    {\r\n        \"mealName\": \"Cheeseburger\",\r\n        \"mealCalorie\": 410,\r\n        \"mealPicture\": \"cheeseburger.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 156\r\n    },\r\n    {\r\n        \"mealName\": \"Chicken Sandwich\",\r\n        \"mealCalorie\": 410,\r\n        \"mealPicture\": \"chickensandwich.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 170\r\n    },\r\n    {\r\n        \"mealName\": \"Chicken Wings\",\r\n        \"mealCalorie\": 94,\r\n        \"mealPicture\": \"chickenwings.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 29\r\n    },\r\n    {\r\n        \"mealName\": \"Double Cheeseburger\",\r\n        \"mealCalorie\": 414,\r\n        \"mealPicture\": \"doublecheeseburger.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 155\r\n    },\r\n    {\r\n        \"mealName\": \"Grilled Chicken Salad\",\r\n        \"mealCalorie\": 268,\r\n        \"mealPicture\": \"grilledchickensalad.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 305\r\n    },\r\n    {\r\n        \"mealName\": \"Hamburger\",\r\n        \"mealCalorie\": 279,\r\n        \"mealPicture\": \"hamburger.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 110\r\n    },\r\n    {\r\n        \"mealName\": \"Nachos with Cheese\",\r\n        \"mealCalorie\": 575,\r\n        \"mealPicture\": \"nachoswithcheese.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 188\r\n    },\r\n    {\r\n        \"mealName\": \"Poutine\",\r\n        \"mealCalorie\": 511,\r\n        \"mealPicture\": \"poutine.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 225\r\n    },\r\n    {\r\n        \"mealName\": \"Smoked Salmon\",\r\n        \"mealCalorie\": 44,\r\n        \"mealPicture\": \"smokedsalmon.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 28\r\n    },\r\n    {\r\n        \"mealName\": \"Subway Club Sandwich\",\r\n        \"mealCalorie\": 312,\r\n        \"mealPicture\": \"subwayclubsandwich.jpg\",\r\n        \"mealLabel\": \"any\",\r\n        \"servingMeasureInGm\": 238\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/createMany",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"createMany"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get meal by calorie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"calorie\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/byCalorie",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"byCalorie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get meal based on time",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/all/any",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"all",
+						"any"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

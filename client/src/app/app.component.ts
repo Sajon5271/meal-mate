@@ -10,9 +10,4 @@ export class AppComponent {
   title = 'Meal Mate';
 
   constructor(private authClient: AuthenticateServiceService) {}
-
-  cloc() {
-    window.sessionStorage.clear();
-    this.authClient.OAuthLogin();
-  }
 }
