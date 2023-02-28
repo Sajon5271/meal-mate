@@ -2,14 +2,16 @@
   <mat-label>{{ title | titlecase }}</mat-label>
   <input
     matInput
+    [formControl]="controller"
     [type]="inputType"
     [(ngModel)]="value"
-    (input)="onValueChange($event)"
-    [disabled]="disabled"
+    (change)="onValueChange($event)"
     [placeholder]="placeholder"
     [minLength]="minLength"
     [maxLength]="maxLength"
     [required]="required"
   />
-  <!-- <mat-error *ngIf="invalid"> Please enter a valid email address </mat-error> -->
+  <mat-error *ngIf="!this.controller.valid">
+    {{ getErrorMessage() }}
+  </mat-error>
 </mat-form-field>

@@ -2,6 +2,7 @@ import { Component, Input, Output } from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
+  Validators,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 
@@ -21,7 +22,7 @@ export class InputFieldComponent implements ControlValueAccessor {
   @Input() title: string = '';
   @Input() inputType: string = 'text';
   @Input() placeholder: string = '';
-  @Input() disabled: boolean = false;
+  @Input() isDisabled: boolean = false;
   @Input() required: boolean = false;
   @Input() minLength: number = 0;
   @Input() maxLength: number = 100;
@@ -34,24 +35,23 @@ export class InputFieldComponent implements ControlValueAccessor {
 
   touched = false;
 
+  ngOnInit() {
+    if (this.isDisabled) this.controller.disable();
+  }
   onValueChange(evt: any) {
     this.markTouched();
     // No need to check as I will disable input field based on disabled value
     // if(!this.disabled){
     // }
-    this.value = evt.target.value;
-    console.log(this.isValid());
-    this.onChange(this.value);
+    // this.value = evt.target.value;
+    // console.log(this.value);
+    this.onChange(evt.target.value);
   }
 
   writeValue(obj: any): void {
     this.value = obj;
   }
 
-  isValid(): boolean {
-    if (this.touched && this.controller.invalid) return true;
-    return false;
-  }
   registerOnChange(fn: any): void {
     this.onChange = fn;
   }
@@ -61,7 +61,39 @@ export class InputFieldComponent implements ControlValueAccessor {
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.isDisabled = isDisabled;
+  }
+
+  getErrorMessage() {
+    const allPossibleErrors = [
+      {
+        error: 'email',
+        message: (err: any) => 'Please enter a valid email address',
+      },
+      {
+        error: 'min',
+        message: (err: any) => `Value cannot be less than ${err.min}`,
+      },
+      {
+        error: 'minlength',
+        message: (err: any) =>
+          `Input must be at least ${err.requiredLength} character long`,
+      },
+      {
+        error: 'max',
+        message: (err: any) => `Value cannot be greater than ${err.max}`,
+      },
+      {
+        error: 'required',
+        message: (err: any) => 'This field is required',
+      },
+    ];
+    for (const { error, message } of allPossibleErrors) {
+      if (this.controller.hasError(error)) {
+        return message(this.controller.errors?.[error]);
+      }
+    }
+    return null;
   }
 
   markTouched() {
