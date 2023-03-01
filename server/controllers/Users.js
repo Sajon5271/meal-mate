@@ -60,7 +60,7 @@ const setUserData = async (req, res, next) => {
     req.currentUser.dataAlreadyGiven = true;
     generateMealPlan(req);
     await req.currentUser.save();
-    res.status(201).send('Updated data');
+    res.status(201).send({ message: 'Updated data' });
   } catch (error) {
     console.log(error);
     res.status(400).send({ error, message: 'Something went wrong' });

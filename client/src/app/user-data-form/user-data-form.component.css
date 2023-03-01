@@ -1,0 +1,49 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+}
+.questions {
+  max-width: 100%;
+}
+
+.stepperStyle {
+  display: flex;
+  flex-direction: column;
+}
+
+.directionButtons {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.directionButtonsSolo {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+
+/* .formField {
+  width: 100vw;
+} */
+
+.looseGainPrompt {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 78.4px;
+}
+
+.buttonToggle {
+  align-self: center;
+}
+
+.heroTitle {
+  font-size: xx-large;
+  max-width: 100%;
+}

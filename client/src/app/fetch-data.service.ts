@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './User.interface';
+import { UserData } from './UserData.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +19,16 @@ export class FetchDataService {
       },
     });
   }
-  getAuthToken(): string | null {
+
+  setData(data: UserData): Observable<string> {
+    return this.http.post<string>(this.baseUrl + '/setData', data, {
+      headers: {
+        Authorization: `Bearer ${this.getAuthToken()}`,
+      },
+    });
+  }
+
+  private getAuthToken(): string | null {
     return sessionStorage.getItem('accessToken');
   }
 }

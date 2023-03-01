@@ -42,12 +42,12 @@ export class LoginPageComponent implements OnInit {
       this.authService.loginUser({ email, password }).subscribe({
         next: (res) => {
           sessionStorage.setItem('accessToken', res.accessToken);
-          this.dataService
-            .getUser()
-            .subscribe((res) =>
-              localStorage.setItem('currentUserData', JSON.stringify(res))
-            );
-          this.router.navigate(['mealplan/today']);
+          this.dataService.getUser().subscribe((res) => {
+            localStorage.setItem('currentUserData', JSON.stringify(res));
+            console.log(res.dataAlreadyGiven);
+            if (!res.dataAlreadyGiven) this.router.navigate(['questions']);
+            else this.router.navigate(['mealplan/today']);
+          });
         },
         error: (err) => {
           this.errorMessage = err.error.message;

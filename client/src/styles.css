@@ -11,7 +11,7 @@
 
 body {
   margin: 0;
-  background-color: #f4f5fa;
+  /* background-color: #f4f5fa; */
   font-family: Roboto, "Helvetica Neue", sans-serif;
   max-width: 430px;
 }
@@ -44,3 +44,4 @@ h3 {
 .gray-text {
   color: #4f5854;
 }
+
