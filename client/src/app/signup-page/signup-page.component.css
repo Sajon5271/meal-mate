@@ -25,6 +25,7 @@
 .linkText {
   color: #339166;
   padding-left: 0.5ch;
+  text-decoration: none;
 }
 
 .socialMedia {
