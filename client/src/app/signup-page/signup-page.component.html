@@ -25,7 +25,17 @@
       [controller]="signUpForm.controls.repassword"
       formControlName="repassword"
     ></app-input-field>
-    <app-secondary-button text="sign up" type="submit"></app-secondary-button>
+    <mat-error *ngIf="password !== rePassword"
+      >Passwords do not match</mat-error
+    >
+    <mat-error *ngIf="signUpError"
+      >{{errorMessage}}</mat-error
+    >
+    <app-secondary-button
+      [isDisabled]="!passwordMatches"
+      text="sign up"
+      type="submit"
+    ></app-secondary-button>
     <!-- <button type="submit">Login</button> -->
     <div class="mediumText gray-text forgotPassword">
       Already have an account?<br />

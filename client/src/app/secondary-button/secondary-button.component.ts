@@ -8,8 +8,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class SecondaryButtonComponent {
   @Input() type: string = 'button';
   @Input() text: string = '';
+  @Input() isDisabled: boolean = false;
   @Output() clicked = new EventEmitter();
   handleClick(): void {
     this.clicked.emit();
   }
+  
 }

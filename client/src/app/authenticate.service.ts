@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
+import { User } from './User.interface';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 const googleOauthConfig: AuthConfig = {
   issuer: 'https://accounts.google.com',
@@ -22,18 +24,18 @@ const googleOauthConfig: AuthConfig = {
 @Injectable({
   providedIn: 'root',
 })
-export class AuthenticateServiceService {
+export class AuthenticateService {
   baseUrl = 'http://localhost:3000';
 
   constructor(
     private http: HttpClient,
-    private readonly oAuthService: OAuthService
+    private readonly oAuthService: OAuthService,
+    private jwthelper: JwtHelperService
   ) {}
 
   googleOAuthLogin(): any {
     this.oAuthService.configure(googleOauthConfig);
     this.oAuthService.loadDiscoveryDocument().then((doc) => {
-      console.log(doc);
       this.oAuthService.tryLoginImplicitFlow().then(() => {
         if (!this.oAuthService.hasValidAccessToken()) {
           this.oAuthService.initLoginFlow();
@@ -59,5 +61,36 @@ export class AuthenticateServiceService {
     //     }
     //   });
     // });
+  }
+
+  signUpUser(user: {
+    email: string;
+    password: string;
+  }): Observable<{ accessToken: string }> {
+    return this.http.post<{ accessToken: string }>(
+      `${this.baseUrl}/register`,
+      user
+    );
+  }
+
+  loginUser(user: {
+    email: string;
+    password: string;
+  }): Observable<{ accessToken: string }> {
+    return this.http.post<{ accessToken: string }>(
+      `${this.baseUrl}/login`,
+      user
+    );
+  }
+
+  logOut() {
+    sessionStorage.clear();
+    localStorage.clear();
+  }
+
+  isLoggedIn() {
+    const token = sessionStorage.getItem('accessToken');
+    if (!token || this.jwthelper.isTokenExpired(token)) return false;
+    else return true;
   }
 }

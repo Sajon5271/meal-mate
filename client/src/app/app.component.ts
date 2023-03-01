@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthenticateServiceService } from './authenticate-service.service';
+import { AuthenticateService } from './authenticate.service';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +9,5 @@ import { AuthenticateServiceService } from './authenticate-service.service';
 export class AppComponent {
   title = 'Meal Mate';
 
-  constructor(private authClient: AuthenticateServiceService) {}
+  constructor(private authClient: AuthenticateService) {}
 }
