@@ -13,14 +13,14 @@ const createNewUser = async (req, res, next) => {
     if (checkUser) {
       return res
         .status(409)
-        .send({ error: '409', message: 'User already exists' });
+        .send({ error: '409', message: 'User with email already exists' });
     }
     if (!user.oAuthUser) {
       user.password = await bcrypt.hash(user.password, 10);
     }
     const newUser = await Users.create(user);
     const { _id } = newUser;
-    const accessToken = jwt.sign({ _id }, SECRET_KEY, { expiresIn: '1m' });
+    const accessToken = jwt.sign({ _id }, SECRET_KEY, { expiresIn: '30 days' });
     res.status(201).send({ accessToken });
   } catch (error) {
     console.log(error);
@@ -31,13 +31,13 @@ const createNewUser = async (req, res, next) => {
 
 const login = async (req, res, next) => {
   try {
-    const user = await Users.find({ email: req.body.email });
+    const user = await Users.findOne({ email: req.body.email });
     if (!user)
       return res.status(404).send({ error: '404', message: 'User not found' });
     const match = await bcrypt.compare(req.body.password, user.password);
     if (match) {
       const accessToken = jwt.sign({ _id: user._id }, SECRET_KEY, {
-        expiresIn: '1m',
+        expiresIn: '30 days',
       });
       res.status(200).send({ accessToken });
     } else {
@@ -50,18 +50,8 @@ const login = async (req, res, next) => {
   }
 };
 
-const getUserById = async (req, res, next) => {
-  const id = req.params.id;
-  try {
-    const user = await Users.findById(id);
-    if (!user)
-      return res.status(404).send({ error: '404', message: 'User not found' });
-    res.status(200).send(user);
-  } catch (error) {
-    console.log(error);
-    res.status(400).send({ error, message: 'Something went wrong' });
-    next();
-  }
+const getUser = async (req, res, next) => {
+  res.status(200).send(req.currentUser);
 };
 
 const setUserData = async (req, res, next) => {
@@ -132,7 +122,7 @@ const uploadPic = async (req, res, next) => {
 module.exports = {
   createNewUser,
   login,
-  getUserById,
+  getUser,
   setUserData,
   getMealPlans,
   updateMealPlans,

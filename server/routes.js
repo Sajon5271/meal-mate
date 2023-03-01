@@ -17,6 +17,8 @@ router.post('/register', UserController.createNewUser);
 router.post('/login', UserController.login);
 router.post('/setData', authMiddleware, UserController.setUserData);
 
+router.get('/user', authMiddleware, UserController.getUser)
+
 router.post('/uploadProfilePic', authMiddleware, UserController.uploadPic);
 
 router.get('/getMealPlan', authMiddleware, UserController.getMealPlans);

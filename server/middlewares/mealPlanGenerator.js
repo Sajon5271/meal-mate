@@ -4,7 +4,7 @@ const generateMealPlan = (req) => {
   let userData = {};
   if (!req.currentUser) userData = req.body;
   else userData = req.currentUser.userData;
-  req.currentUser.mealPlan = generator(userData);
+  req.currentUser.userData.calculatedDailyCalorie = generator(userData);
   // req.body = generator(userData);
 };
 const generator = (userData) => {
@@ -20,6 +20,7 @@ const generator = (userData) => {
   )[weightGoal];
   //Here will be the algorithm
   // return generatedPlan
+  return calculatedDailyCalorie;
 };
 
 module.exports = generateMealPlan;
