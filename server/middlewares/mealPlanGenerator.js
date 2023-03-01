@@ -1,11 +1,11 @@
 const fitnessCalc = require('fitness-calculator');
 
-const generateMealPlan = (req, res, next) => {
+const generateMealPlan = (req) => {
   let userData = {};
   if (!req.currentUser) userData = req.body;
   else userData = req.currentUser.userData;
-  req.body = generator(userData);
-  next();
+  req.currentUser.mealPlan = generator(userData);
+  // req.body = generator(userData);
 };
 const generator = (userData) => {
   const { currentWeight, currentHeight, sex, age, activityLevel, weightGoal } =

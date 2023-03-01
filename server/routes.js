@@ -20,12 +20,12 @@ router.post('/setData', authMiddleware, UserController.setUserData);
 router.post('/uploadProfilePic', authMiddleware, UserController.uploadPic);
 
 router.get('/getMealPlan', authMiddleware, UserController.getMealPlans);
-router.get(
-  '/generateMealPlan',
-  authMiddleware,
-  generateMealPlan,
-  UserController.updateMealPlans
-);
+// router.get(
+//   '/generateMealPlan',
+//   authMiddleware,
+//   generateMealPlan,
+//   UserController.updateMealPlans
+// );
 router.put('/updateMealPlan', authMiddleware, UserController.updateMealPlans);
 router.put('/updateUserInfo', authMiddleware, UserController.updateUserInfo);
 router.put('/updateUserData', authMiddleware, UserController.setUserData);

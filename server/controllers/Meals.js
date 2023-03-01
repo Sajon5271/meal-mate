@@ -33,11 +33,29 @@ const getAllMeals = async (req, res, next) => {
   }
 };
 
+const getSingleMealById = async (id) => {
+  try {
+    const meal = await Meals.findById(id);
+    return meal;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getMultipleMealById = async (ids) => {
+  try {
+    const meals = await Meals.find({ _id: { $in: ids } });
+    return meals;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const getSpecificTimeMeal = async (req, res, next) => {
   const mealTime = req.params.mealTime;
   try {
     const specificMeals = await Meals.find({
-      mealLabel: mealTime.toLowerCase(),
+      mealLabel: { $elemMatch: mealTime },
     });
     res.status(200).send(specificMeals);
   } catch (error) {
@@ -65,4 +83,6 @@ module.exports = {
   getAllMeals,
   getSpecificTimeMeal,
   getMealbyCalorie,
+  getSingleMealById,
+  getMultipleMealById,
 };

@@ -14,14 +14,21 @@ const mealSchema = mongoose.Schema({
     required: true,
     default: 'no-picture.jpg',
   },
-  // Label is like : breakfast, lunch, snack, dinner, any
+  // Label is like : breakfast, lunch, snack, dinner
   mealLabel: {
+    type: [String],
+    required: true,
+    default: ['breakfast', 'lunch', 'snack', 'dinner'],
+  },
+  baseQuantity: {
+    type: Number,
+    required: true,
+    default: 1,
+  },
+  measurementUnit: {
     type: String,
     required: true,
-    default: 'any',
-  },
-  servingMeasureInGm: {
-    type: String,
+    default: 'gm',
   },
 });
 

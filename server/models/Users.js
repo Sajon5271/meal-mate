@@ -1,6 +1,5 @@
 const { PORT } = require('../configs');
 const mongoose = require('../db');
-const { mealSchema } = require('./Meals');
 
 const userSchema = new mongoose.Schema(
   {
@@ -57,46 +56,46 @@ const userSchema = new mongoose.Schema(
     },
     mealPlan: {
       saturday: {
-        breakfast: [mealSchema],
-        lunch: [mealSchema],
-        snacks: [mealSchema],
-        dinner: [mealSchema],
+        breakfast: [String],
+        lunch: [String],
+        snacks: [String],
+        dinner: [String],
       },
       sunday: {
-        breakfast: [mealSchema],
-        lunch: [mealSchema],
-        snacks: [mealSchema],
-        dinner: [mealSchema],
+        breakfast: [String],
+        lunch: [String],
+        snacks: [String],
+        dinner: [String],
       },
       monday: {
-        breakfast: [mealSchema],
-        lunch: [mealSchema],
-        snacks: [mealSchema],
-        dinner: [mealSchema],
+        breakfast: [String],
+        lunch: [String],
+        snacks: [String],
+        dinner: [String],
       },
       tuesday: {
-        breakfast: [mealSchema],
-        lunch: [mealSchema],
-        snacks: [mealSchema],
-        dinner: [mealSchema],
+        breakfast: [String],
+        lunch: [String],
+        snacks: [String],
+        dinner: [String],
       },
       wednesday: {
-        breakfast: [mealSchema],
-        lunch: [mealSchema],
-        snacks: [mealSchema],
-        dinner: [mealSchema],
+        breakfast: [String],
+        lunch: [String],
+        snacks: [String],
+        dinner: [String],
       },
       thursday: {
-        breakfast: [mealSchema],
-        lunch: [mealSchema],
-        snacks: [mealSchema],
-        dinner: [mealSchema],
+        breakfast: [String],
+        lunch: [String],
+        snacks: [String],
+        dinner: [String],
       },
       friday: {
-        breakfast: [mealSchema],
-        lunch: [mealSchema],
-        snacks: [mealSchema],
-        dinner: [mealSchema],
+        breakfast: [String],
+        lunch: [String],
+        snacks: [String],
+        dinner: [String],
       },
     },
   },

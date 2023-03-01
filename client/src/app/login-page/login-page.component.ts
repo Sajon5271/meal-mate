@@ -18,7 +18,7 @@ export class LoginPageComponent {
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
   handleSubmit() {
-    console.log(this.loginForm);
+    console.log(this.loginForm.value);
   }
   googleOAuth() {
     this.authService.googleOAuthLogin();

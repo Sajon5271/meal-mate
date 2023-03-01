@@ -13,6 +13,7 @@ body {
   margin: 0;
   background-color: #f4f5fa;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  max-width: 430px;
 }
 /*--------------Angular Material UI done------------------*/
 

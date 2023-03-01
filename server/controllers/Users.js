@@ -1,6 +1,8 @@
 const Users = require('../models/Users');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const MealUtil = require('./Meals');
+const generateMealPlan = require('../middlewares/mealPlanGenerator');
 const { SECRET_KEY, PORT } = require('../configs');
 
 const createNewUser = async (req, res, next) => {
@@ -18,7 +20,7 @@ const createNewUser = async (req, res, next) => {
     }
     const newUser = await Users.create(user);
     const { _id } = newUser;
-    const accessToken = jwt.sign({ _id }, SECRET_KEY);
+    const accessToken = jwt.sign({ _id }, SECRET_KEY, { expiresIn: '1m' });
     res.status(201).send({ accessToken });
   } catch (error) {
     console.log(error);
@@ -34,7 +36,9 @@ const login = async (req, res, next) => {
       return res.status(404).send({ error: '404', message: 'User not found' });
     const match = await bcrypt.compare(req.body.password, user.password);
     if (match) {
-      const accessToken = jwt.sign({ _id: user._id }, SECRET_KEY);
+      const accessToken = jwt.sign({ _id: user._id }, SECRET_KEY, {
+        expiresIn: '1m',
+      });
       res.status(200).send({ accessToken });
     } else {
       res.status(403).send({ error: '403', message: 'Wrong Password' });
@@ -64,6 +68,7 @@ const setUserData = async (req, res, next) => {
   try {
     req.currentUser.userData = req.body;
     req.currentUser.dataAlreadyGiven = true;
+    generateMealPlan(req);
     await req.currentUser.save();
     res.status(201).send('Updated data');
   } catch (error) {
@@ -74,7 +79,11 @@ const setUserData = async (req, res, next) => {
 };
 
 const getMealPlans = async (req, res, next) => {
-  res.status(200).send(req.currentUser.mealPlan);
+  const mealPlanObj = {};
+  for (const [key, value] of Object.entries(req.currentUser.mealPlan)) {
+    mealPlanObj[key] = MealUtil.getMultipleMealById(value);
+  }
+  res.status(200).send(mealPlanObj);
   next();
 };
 // const getTodaysMealPlans = async (req, res, next) => {
