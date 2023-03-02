@@ -61,9 +61,9 @@ const setUserData = async (req, res, next) => {
     const cal = req.currentUser.userData.calculatedDailyCalorie;
     if (cal > 1000 || cal < 4000) {
       req.currentUser.dataAlreadyGiven = true;
-    }
+      res.status(201).send({ message: 'Updated data' });
+    } else res.status(400).send({ error: '400', message: 'Bad data' });
     await req.currentUser.save();
-    res.status(201).send({ message: 'Updated data' });
   } catch (error) {
     console.log(error);
     res.status(400).send({ error, message: 'Something went wrong' });
@@ -73,9 +73,9 @@ const setUserData = async (req, res, next) => {
 
 const getMealPlans = async (req, res, next) => {
   const mealPlanObj = {};
-  for (const [key, value] of Object.entries(req.currentUser.mealPlan)) {
-    mealPlanObj[key] = MealUtil.getMultipleMealById(value);
-  }
+  // for (const [key, value] of Object.entries(req.currentUser.mealPlan)) {
+  //   mealPlanObj[key] = MealUtil.getMultipleMealById(value);
+  // }
   res.status(200).send(mealPlanObj);
   next();
 };
