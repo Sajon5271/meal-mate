@@ -57,8 +57,11 @@ const getUser = async (req, res, next) => {
 const setUserData = async (req, res, next) => {
   try {
     req.currentUser.userData = req.body;
-    req.currentUser.dataAlreadyGiven = true;
     generateMealPlan(req);
+    const cal = req.currentUser.userData.calculatedDailyCalorie;
+    if (cal > 1000 || cal < 4000) {
+      req.currentUser.dataAlreadyGiven = true;
+    }
     await req.currentUser.save();
     res.status(201).send({ message: 'Updated data' });
   } catch (error) {

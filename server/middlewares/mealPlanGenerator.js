@@ -1,13 +1,16 @@
 const fitnessCalc = require('fitness-calculator');
+const Meals = require('../models/Meals');
 
 const generateMealPlan = (req) => {
   let userData = {};
   if (!req.currentUser) userData = req.body;
   else userData = req.currentUser.userData;
-  req.currentUser.userData.calculatedDailyCalorie = generator(userData);
-  // req.body = generator(userData);
+
+  const calorieNeeded = calorieCalculate(userData);
+  req.currentUser.userData.calculatedDailyCalorie = calorieNeeded;
+  const distributedCalories = calorieDivide(calorieNeeded);
 };
-const generator = (userData) => {
+const calorieCalculate = (userData) => {
   const { currentWeight, currentHeight, sex, age, activityLevel, weightGoal } =
     userData;
 
@@ -18,9 +21,16 @@ const generator = (userData) => {
     currentWeight,
     activityLevel
   )[weightGoal];
-  //Here will be the algorithm
-  // return generatedPlan
   return calculatedDailyCalorie;
+};
+
+const calorieDivide = (totalCalorie) => {
+  return {
+    breakfast: totalCalorie * 0.25,
+    lunch: totalCalorie * 0.35,
+    snacks: totalCalorie * 0.15,
+    dinner: totalCalorie * 0.25,
+  };
 };
 
 module.exports = generateMealPlan;

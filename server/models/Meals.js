@@ -14,12 +14,6 @@ const mealSchema = mongoose.Schema({
     required: true,
     default: 'no-picture.jpg',
   },
-  // Label is like : breakfast, lunch, snack, dinner
-  mealLabel: {
-    type: [String],
-    required: true,
-    default: ['breakfast', 'lunch', 'snack', 'dinner'],
-  },
   baseQuantity: {
     type: Number,
     required: true,
@@ -27,11 +21,8 @@ const mealSchema = mongoose.Schema({
   },
   measurementUnit: {
     type: String,
-    required: true,
-    default: 'gm',
+    default: '',
   },
 });
 
-const mealModel = mongoose.model('Meal', mealSchema);
-
-module.exports = { mealModel, mealSchema };
+module.exports = mongoose.model('Meal', mealSchema);

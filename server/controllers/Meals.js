@@ -1,10 +1,9 @@
-const { mealModel: Meals } = require('../models/Meals');
+const Meals = require('../models/Meals');
 
 const createAMeal = async (req, res, next) => {
   const newMeal = req.body;
   try {
-    if (newMeal) newMeal.mealLabel = newMeal.mealLabel.toLowerCase();
-    else throw new Error('No data provided');
+    if (!newMeal) throw new Error('No data provided');
     await Meals.create(newMeal);
     res.status(201).send('Created a new meal');
   } catch (error) {
