@@ -50,8 +50,40 @@
 
 .backGround {
   position: absolute;
-  top: 50%;
-  left: -9%;
   z-index: -999;
   overflow: hidden;
+  /* width: 100%;
+  top: 50%;
+  left: -9%;
+   */
+}
+.custom-shape-divider-bottom-1677761973 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: -99;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1677761973 svg {
+  position: relative;
+  display: block;
+  width: calc(126% + 1.3px);
+  height: 231px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-bottom-1677761973 .shape-fill {
+  fill: #6cc57c;
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+  .custom-shape-divider-bottom-1677761973 svg {
+    width: calc(193% + 1.3px);
+    height: 150px;
+  }
 }
