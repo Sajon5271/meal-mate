@@ -1,0 +1,56 @@
+.file-input {
+  display: none;
+}
+
+.file-upload {
+  padding: 5px;
+  height: 100%;
+  border: 1px solid #9e9e9e;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: large;
+  color: #9e9e9e;
+}
+
+.fileInputForm {
+  display: flex;
+  width: 300px;
+  height: 56px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.containerUpdate {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.inputForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.upload-btn {
+  border: 1px solid #9e9e9e;
+  border-radius: 0;
+  height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageProfile {
+  max-height: 300px;
+  width: auto;
+}

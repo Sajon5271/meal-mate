@@ -51,7 +51,7 @@ export class SignupPageComponent implements OnInit {
             .subscribe((res) =>
               localStorage.setItem('currentUserData', JSON.stringify(res))
             );
-          this.router.navigate(['questions']);
+          this.router.navigate(['update-profile']);
         },
         error: (err) => {
           this.errorMessage = err.error.message;

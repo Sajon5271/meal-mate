@@ -1,1 +1,14 @@
-<p>todays-meal-plan works!</p>
+<div class="upcomingMeal">
+  <mat-card *ngFor="let breakfast of breakFastMeals" class="upcomingMealCard">
+    <mat-card-header>
+      <mat-card-title-group>
+        <mat-card-title>{{ breakfast.mealName }}</mat-card-title>
+        <mat-card-subtitle
+          >{{ breakfast.mealCalorie }} calories</mat-card-subtitle
+        >
+        <mat-card-subtitle> 1 {{ breakfast.measurementUnit }}</mat-card-subtitle>
+        <img mat-card-avatar src="{{ imageBase + breakfast.mealPicture }}" />
+      </mat-card-title-group>
+    </mat-card-header>
+  </mat-card>
+</div>

@@ -16,6 +16,7 @@ import { UserDataFormComponent } from './user-data-form/user-data-form.component
 import { HomePageComponent } from './home-page-component/home-page-component.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { TodaysMealPlanComponent } from './todays-meal-plan/todays-meal-plan.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { TodaysMealPlanComponent } from './todays-meal-plan/todays-meal-plan.com
     UserDataFormComponent,
     HomePageComponent,
     TodaysMealPlanComponent,
+    UpdateProfileComponent,
   ],
   imports: [
     BrowserModule,

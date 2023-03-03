@@ -1,0 +1,9 @@
+.upcomingMeal {
+  display: flex;
+  gap: 5px;
+  flex-wrap: nowrap;
+}
+
+.upcomingMealCard {
+  min-width: 300px;
+}

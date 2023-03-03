@@ -5,6 +5,7 @@ import {
   Validators,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+import { MatFormFieldAppearance } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-input-field',
@@ -27,6 +28,7 @@ export class InputFieldComponent implements ControlValueAccessor {
   @Input() minLength: number = 0;
   @Input() maxLength: number = 100;
   @Input() controller!: FormControl;
+  @Input() appearance: MatFormFieldAppearance = 'fill';
 
   invalid = true;
   value: string = '';

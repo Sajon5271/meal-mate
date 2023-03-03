@@ -1,6 +1,6 @@
 export interface MealPlan {
-  breakfast: [string];
-  lunch: [string];
-  snacks: [string];
-  dinner: [string];
+  breakfast: [{ mealId: string; quantity: number }];
+  lunch: [{ mealId: string; quantity: number }];
+  snacks: [{ mealId: string; quantity: number }];
+  dinner: [{ mealId: string; quantity: number }];
 }
