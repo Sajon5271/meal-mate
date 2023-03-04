@@ -58,7 +58,7 @@ const getUser = async (req, res, next) => {
 const setUserData = async (req, res, next) => {
   try {
     req.currentUser.userData = req.body;
-    generateMealPlan(req);
+    await generateMealPlan(req);
     const cal = req.currentUser.userData.calculatedDailyCalorie;
     if (cal > 1000 || cal < 4000) {
       console.log(cal);
@@ -66,6 +66,24 @@ const setUserData = async (req, res, next) => {
       res.status(201).send({ message: 'Updated data' });
     } else res.status(400).send({ error: '400', message: 'Bad data' });
     await req.currentUser.save();
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ error, message: 'Something went wrong' });
+    next();
+  }
+};
+
+const anonUserData = async (req, res, next) => {
+  try {
+    req.currentUser = { userData: {}, mealPlan: {} };
+    req.currentUser;
+    req.currentUser.userData = req.body;
+    await generateMealPlan(req);
+    const cal = req.currentUser.userData.calculatedDailyCalorie;
+    if (cal > 1000 || cal < 4000) {
+      req.currentUser.dataAlreadyGiven = true;
+      res.status(201).send(req.currentUser);
+    } else res.status(400).send({ error: '400', message: 'Bad data' });
   } catch (error) {
     console.log(error);
     res.status(400).send({ error, message: 'Something went wrong' });
@@ -129,7 +147,7 @@ const uploadPic = async (req, res, next) => {
   );
   req.currentUser.picturePath = `http://localhost:${PORT}/images/user/${req.currentUser._id}-${profilePic.name}`;
   await req.currentUser.save();
-  res.sendStatus(201);
+  res.status(201).send({ msg: 'created' });
 };
 
 module.exports = {
@@ -141,4 +159,5 @@ module.exports = {
   updateMealPlans,
   updateUserInfo,
   uploadPic,
+  anonUserData,
 };

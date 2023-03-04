@@ -4,17 +4,18 @@ const Meals = require('../models/Meals');
 
 const eachMealCalorie = {};
 
-const generateMealPlan = (req) => {
+const generateMealPlan = async (req) => {
   let userData = {};
-  if (!req.currentUser) userData = req.body;
-  else userData = req.currentUser.userData;
+
+  userData = req.currentUser.userData;
 
   const calorieNeeded = calorieCalculate(userData);
   req.currentUser.userData.calculatedDailyCalorie = calorieNeeded;
-  // const mealPlanData = fetchPresetData();
-  // getAllMealCalorie();
-  // const mealplan = generator(mealPlanData, calorieNeeded);
-  console.log('here');
+  const mealPlanData = await fetchPresetData();
+  await getAllMealCalorie();
+  console.time();
+  const mealplan = await generator(mealPlanData, calorieNeeded);
+  console.timeEnd();
   const days = [
     'saturday',
     'sunday',
@@ -25,21 +26,9 @@ const generateMealPlan = (req) => {
     'friday',
   ];
   for (const day of days) {
-    req.currentUser.mealPlan[day] = {
-      breakfast: [
-        { mealId: '63fdca71ad93589dcd03571d', quantity: 2 },
-        { mealId: '63fdca71ad93589dcd03571e', quantity: 1 },
-        { mealId: '63fdca71ad93589dcd03571f', quantity: 1 },
-      ],
-      lunch: [
-        { mealId: '63fdca71ad93589dcd035720', quantity: 1 },
-        { mealId: '63fdca71ad93589dcd035721', quantity: 1 },
-      ],
-      snacks: [{ mealId: '63fdca71ad93589dcd035746', quantity: 1 }],
-      dinner: [{ mealId: '63fdca71ad93589dcd03574b', quantity: 1 }],
-    };
+    req.currentUser.mealPlan[day] = mealplan;
   }
-
+  if (req.currentUser.email) await req.currentUser.save();
   // const distributedCalories = calorieDivide(calorieNeeded);
 };
 const calorieCalculate = (userData) => {
@@ -59,7 +48,7 @@ const calorieCalculate = (userData) => {
 const fetchPresetData = async () => {
   try {
     const mealPlanData = await JSON.parse(
-      await fs.promises.readFile('../data/mealPlan.json', 'utf-8')
+      await fs.promises.readFile(__dirname + '/../data/mealPlan.json', 'utf-8')
     );
     return mealPlanData;
   } catch (error) {
@@ -68,31 +57,50 @@ const fetchPresetData = async () => {
 };
 
 const generator = async (mealPlan, calorieNeeded) => {
+  let count1stCondition = 0;
+  let count2ndCondition = 0;
+  let count3rdCondition = 0;
+  let count4thCondition = 0;
+  let count5thCondition = 0;
+
+  let ratio = 0;
+
+  const breakfastCalories = [];
+  const lunchCalories = [];
+  const snacksCalories = [];
+  const dinnerCalories = [];
   const eligibleMealPlan = [];
-  for (const [bf, bfidx] of mealPlan.breakfasts.entries()) {
+  for (const [bfidx, bf] of Object.entries(mealPlan.breakfasts)) {
     const bfCal = addAllCalorieOfaPreset(bf);
     breakfastCalories.push(bfCal);
-    for (const [l, lidx] of mealPlan.lunch.entries()) {
+    for (const [lidx, l] of Object.entries(mealPlan.lunch)) {
       const lCal = addAllCalorieOfaPreset(l);
       lunchCalories.push(lCal);
-      for (const [s, sidx] of mealPlan.snacks.entries()) {
+      for (const [sidx, s] of Object.entries(mealPlan.snacks)) {
         const sCal = addAllCalorieOfaPreset(s);
         snacksCalories.push(sCal);
-        for (const [d, didx] of mealPlan.dinner.entries()) {
+        for (const [didx, d] of Object.entries(mealPlan.dinner)) {
           const dCal = addAllCalorieOfaPreset(d);
           dinnerCalories.push(dCal);
           const totalCal = bfCal + lCal + sCal + dCal;
           if (
-            Math.abs(totalCal / bfCal - 0.27) > 0.3 ||
-            Math.abs(totalCal / lCal - 0.37) > 0.3 ||
-            Math.abs(totalCal / sCal - 0.12) > 0.3 ||
-            Math.abs(totalCal / dCal - 0.27) > 0.3 ||
-            Math.abs(calorieNeeded - totalCal) > 100
-          )
+            Math.abs(bfCal / totalCal - 0.27) > 0.03 ||
+            Math.abs(lCal / totalCal - 0.37) > 0.03 ||
+            Math.abs(sCal / totalCal - 0.12) > 0.03 ||
+            Math.abs(dCal / totalCal - 0.27) > 0.03 ||
+            Math.abs(calorieNeeded - totalCal) > 200
+          ) {
+            if (Math.abs(bfCal / totalCal - 0.27) > 0.03) count1stCondition++;
+            if (Math.abs(lCal / totalCal - 0.37) > 0.03) count2ndCondition++;
+            if (Math.abs(sCal / totalCal - 0.12) > 0.03) count3rdCondition++;
+            if (Math.abs(dCal / totalCal - 0.27) > 0.03) count4thCondition++;
+            if (Math.abs(calorieNeeded - totalCal) > 200) count5thCondition++;
+            ratio++;
             continue;
-          else {
+          } else {
+            console.log(calorieNeeded - totalCal);
             eligibleMealPlan.push({
-              diff: calorieNeeded - totalCal,
+              diff: Math.abs(calorieNeeded - totalCal),
               bfidx,
               lidx,
               sidx,
@@ -105,12 +113,21 @@ const generator = async (mealPlan, calorieNeeded) => {
   }
   let lowestDiff = 100;
   let lowestIdx = 0;
+  console.log(
+    count1stCondition,
+    count2ndCondition,
+    count3rdCondition,
+    count4thCondition,
+    count5thCondition,
+    ratio
+  );
   eligibleMealPlan.forEach((el, idx) => {
     if (el.diff < lowestDiff) {
       lowestDiff = el.diff;
       lowestIdx = idx;
     }
   });
+  console.log(eligibleMealPlan);
 
   return {
     breakfast: mealPlan.breakfasts[eligibleMealPlan[lowestIdx].bfidx],
