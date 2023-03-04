@@ -27,11 +27,12 @@ export class UpdateProfileComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.fetchData.updateUser();
-    const user = this.fetchData.getLoggedInUser();
-    this.userInfoForm.controls.name.setValue(user.name || '');
-    this.userInfoForm.controls.email.setValue(user.email);
-    this.profilePicPath = user.picturePath;
+    this.fetchData.updateUser(() => {
+      const user = this.fetchData.getLoggedInUser();
+      this.userInfoForm.controls.name.setValue(user.name || '');
+      this.userInfoForm.controls.email.setValue(user.email);
+      this.profilePicPath = user.picturePath;
+    });
     // this.userProfilePic = user.picturePath.split('/').at(-1) || '';
   }
 

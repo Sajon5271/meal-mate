@@ -10,7 +10,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatChipsModule } from '@angular/material/chips';
-// import { Mat } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -24,6 +26,9 @@ const MaterialComponents = [
   MatCardModule,
   MatTabsModule,
   MatChipsModule,
+  MatAutocompleteModule,
+  MatMenuModule,
+  MatDividerModule,
 ];
 
 @NgModule({

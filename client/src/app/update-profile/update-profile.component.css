@@ -53,4 +53,5 @@
 .imageProfile {
   max-height: 300px;
   width: auto;
+  border-radius: 30px;
 }

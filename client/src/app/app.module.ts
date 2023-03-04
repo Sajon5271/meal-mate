@@ -20,6 +20,7 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
 import { MealListComponent } from './meal-list/meal-list.component';
 import { GeneratedMealPlanComponent } from './generated-meal-plan/generated-meal-plan.component';
 import { UpdateMealPlanComponent } from './update-meal-plan/update-meal-plan.component';
+import { HamburgerMenuComponent } from './hamburger-menu/hamburger-menu.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { UpdateMealPlanComponent } from './update-meal-plan/update-meal-plan.com
     MealListComponent,
     GeneratedMealPlanComponent,
     UpdateMealPlanComponent,
+    HamburgerMenuComponent,
   ],
   imports: [
     BrowserModule,
