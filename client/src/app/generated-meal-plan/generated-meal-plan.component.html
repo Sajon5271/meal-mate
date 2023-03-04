@@ -24,7 +24,7 @@
       <div>Total : {{ calculateCalorie(foods.meals) }} calories</div>
       <div class="recommendedText">
         Reecommended arround:
-        {{ recommendedCalorieIntake(foods.daytime) }}
+        {{ recommendedCalorieIntake(foods.daytime) | number : "1.0-0" }}
       </div>
     </div>
   </div>

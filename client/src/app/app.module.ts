@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,8 @@ import { GeneratedMealPlanComponent } from './generated-meal-plan/generated-meal
 import { UpdateMealPlanComponent } from './update-meal-plan/update-meal-plan.component';
 import { HamburgerMenuComponent } from './hamburger-menu/hamburger-menu.component';
 import { GoogleOauthComponent } from './google-oauth/google-oauth.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { LoadingInterceptor } from './loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,7 @@ import { GoogleOauthComponent } from './google-oauth/google-oauth.component';
     UpdateMealPlanComponent,
     HamburgerMenuComponent,
     GoogleOauthComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +54,11 @@ import { GoogleOauthComponent } from './google-oauth/google-oauth.component';
     ReactiveFormsModule,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
   ],

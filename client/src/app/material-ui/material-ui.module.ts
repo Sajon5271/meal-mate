@@ -13,6 +13,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -29,6 +30,7 @@ const MaterialComponents = [
   MatAutocompleteModule,
   MatMenuModule,
   MatDividerModule,
+  MatProgressSpinnerModule,
 ];
 
 @NgModule({
