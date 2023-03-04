@@ -55,7 +55,6 @@ export class UpdateMealPlanComponent {
     this.userMealPlan = mealService.getUserMealPlan();
   }
   ngOnInit() {
-    
     this.calorieNeeded =
       this.fetchData.getLoggedInUser().userData.calculatedDailyCalorie || 0;
   }
@@ -95,5 +94,12 @@ export class UpdateMealPlanComponent {
       totalCalorie += el.meal.mealCalorie * el.quantity;
     });
     return totalCalorie;
+  }
+  recommendedCalorieIntake(daytime: string) {
+    if (daytime === 'breakfast') return this.calorieNeeded * 0.25;
+    if (daytime === 'lunch') return this.calorieNeeded * 0.35;
+    if (daytime === 'snacks') return this.calorieNeeded * 0.15;
+    if (daytime === 'dinner') return this.calorieNeeded * 0.25;
+    return '';
   }
 }

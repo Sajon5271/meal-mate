@@ -7,6 +7,7 @@
 .mealTime {
   font-size: larger;
   margin: 10px;
+  flex-grow: 1;
 }
 .mealTitle {
   max-width: 90px;
@@ -18,7 +19,7 @@
 }
 
 .cardContainer {
-  max-width: 90vw;
+  width: 90vw;
 }
 
 .singleFood {
@@ -32,7 +33,7 @@
 .titleText {
   display: flex;
   justify-content: space-between;
-  max-width: 90vw;
+  width: 95vw;
 }
 
 .notLoggedIn {
@@ -49,4 +50,26 @@
   color: white;
   text-decoration: none;
   border-radius: 5px;
+}
+
+.dailyCalorieText {
+  margin: 10px;
+  font-size: larger;
+}
+
+.calorieInfoWithCard {
+  max-width: 50%;
+}
+
+.recommendedText {
+  font-size: small;
+}
+
+.coupleMealsCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
 }

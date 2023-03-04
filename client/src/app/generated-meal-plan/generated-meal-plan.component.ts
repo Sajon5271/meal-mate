@@ -105,7 +105,7 @@ export class GeneratedMealPlanComponent {
     return totalCalorie;
   }
 
-  reecommendedCalorieIntake(daytime: string) {
+  recommendedCalorieIntake(daytime: string) {
     if (daytime === 'breakfast') return this.calorieNeeded * 0.25;
     if (daytime === 'lunch') return this.calorieNeeded * 0.35;
     if (daytime === 'snacks') return this.calorieNeeded * 0.15;

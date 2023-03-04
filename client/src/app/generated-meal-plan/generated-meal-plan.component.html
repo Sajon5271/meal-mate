@@ -12,17 +12,19 @@
     >{{ day | titlecase }}
   </mat-chip-option>
 </mat-chip-listbox>
-<div>You need {{ calorieNeeded }} calories daily as per your data.</div>
+<div class="mediumText black-text dailyCalorieText">
+  You need {{ calorieNeeded }} calories daily as per your data.
+</div>
 <div *ngFor="let foods of currentMealPlanArray" class="coupleMealsCard">
   <div class="titleText">
     <div class="mediumText black-text mealTime">
       {{ foods.daytime | titlecase }}
     </div>
-    <div>
+    <div class="calorieInfoWithCard">
       <div>Total : {{ calculateCalorie(foods.meals) }} calories</div>
-      <div>
+      <div class="recommendedText">
         Reecommended arround:
-        {{ reecommendedCalorieIntake(foods.daytime) }} calories
+        {{ recommendedCalorieIntake(foods.daytime) }}
       </div>
     </div>
   </div>
@@ -35,6 +37,9 @@
           <mat-label class="mealTitle"
             >{{ meal.meal.mealCalorie }} calories</mat-label
           >
+          <mat-label class="mealTitle"
+            >x{{ meal.quantity + " " + meal.meal.measurementUnit }}
+          </mat-label>
         </div>
       </div>
     </mat-card>
