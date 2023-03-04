@@ -17,6 +17,9 @@ import { HomePageComponent } from './home-page-component/home-page-component.com
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { TodaysMealPlanComponent } from './todays-meal-plan/todays-meal-plan.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { MealListComponent } from './meal-list/meal-list.component';
+import { GeneratedMealPlanComponent } from './generated-meal-plan/generated-meal-plan.component';
+import { UpdateMealPlanComponent } from './update-meal-plan/update-meal-plan.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,9 @@ import { UpdateProfileComponent } from './update-profile/update-profile.componen
     HomePageComponent,
     TodaysMealPlanComponent,
     UpdateProfileComponent,
+    MealListComponent,
+    GeneratedMealPlanComponent,
+    UpdateMealPlanComponent,
   ],
   imports: [
     BrowserModule,

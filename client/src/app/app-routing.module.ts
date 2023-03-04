@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
+import { GeneratedMealPlanComponent } from './generated-meal-plan/generated-meal-plan.component';
 import { HomePageComponent } from './home-page-component/home-page-component.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
@@ -13,7 +14,15 @@ const routes: Routes = [
   { path: 'register', component: SignupPageComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'questions', component: UserDataFormComponent },
-  { path: 'update-profile', component: UpdateProfileComponent },
+  {
+    path: 'generated-meal-plan',
+    component: GeneratedMealPlanComponent,
+  },
+  {
+    path: 'update-profile',
+    component: UpdateProfileComponent,
+    canActivate: [AuthGuard],
+  },
   {
     path: 'mealplan/today',
     component: TodaysMealPlanComponent,

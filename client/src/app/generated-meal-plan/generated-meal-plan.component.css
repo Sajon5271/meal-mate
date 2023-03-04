@@ -1,0 +1,52 @@
+.singleMealGroup {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mealTime {
+  font-size: larger;
+  margin: 10px;
+}
+.mealTitle {
+  max-width: 90px;
+  text-align: center;
+}
+
+.chips {
+  margin: 10px;
+}
+
+.cardContainer {
+  max-width: 90vw;
+}
+
+.singleFood {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.titleText {
+  display: flex;
+  justify-content: space-between;
+  max-width: 90vw;
+}
+
+.notLoggedIn {
+  background-color: antiquewhite;
+  padding: 25px;
+  display: inline-block;
+}
+
+.signUpLink {
+  background-color: rgb(12, 21, 104);
+  margin-top: 10px;
+  padding: 15px 30px;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}

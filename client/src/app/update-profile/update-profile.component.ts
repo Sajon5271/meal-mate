@@ -41,7 +41,9 @@ export class UpdateProfileComponent implements OnInit {
       .subscribe(() => {
         if (this.imageFile)
           this.fetchData.uploadPicture(this.imageFile).subscribe();
-        this.router.navigate(['questions']);
+        this.fetchData.updateUser(() => {
+          this.router.navigate(['questions']);
+        });
       });
   }
 

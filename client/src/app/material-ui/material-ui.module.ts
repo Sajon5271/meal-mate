@@ -7,7 +7,10 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import {MatCardModule} from '@angular/material/card'
+import { MatCardModule } from '@angular/material/card';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatChipsModule } from '@angular/material/chips';
+// import { Mat } from '@angular/material/input';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -18,7 +21,9 @@ const MaterialComponents = [
   MatSelectModule,
   MatButtonToggleModule,
   MatSlideToggleModule,
-  MatCardModule
+  MatCardModule,
+  MatTabsModule,
+  MatChipsModule,
 ];
 
 @NgModule({

@@ -11,10 +11,12 @@ import { MealsService } from '../meals.service';
 })
 export class TodaysMealPlanComponent {
   imageBase = 'http://localhost:3000/images/meals/';
-  breakFastMeals: Meal[] = [];
-  lunchMeals: Meal[] = [];
-  snacksMeals: Meal[] = [];
-  dinnerMeals: Meal[] = [];
+  breakFastMeals: { meal: Meal; quantity: number }[] = [];
+  lunchMeals: { meal: Meal; quantity: number }[] = [];
+  snacksMeals: { meal: Meal; quantity: number }[] = [];
+  dinnerMeals: { meal: Meal; quantity: number }[] = [];
+  nextMeal: string = '';
+
   constructor(
     private fetchData: FetchDataService,
     private mealService: MealsService
@@ -33,22 +35,31 @@ export class TodaysMealPlanComponent {
     const mealPlan: MealPlan = JSON.parse(
       localStorage.getItem('currentUserData') || '""'
     ).mealPlan[weekdays[day]];
-    console.log(mealPlan);
-    for (const b of mealPlan.breakfast) {
-      const meal = this.mealService.getMealById(b.mealId);
-      if (meal) this.breakFastMeals.push(meal);
-    }
-    for (const l of mealPlan.lunch) {
-      const meal = this.mealService.getMealById(l.mealId);
-      if (meal) this.lunchMeals.push(meal);
-    }
-    for (const s of mealPlan.snacks) {
-      const meal = this.mealService.getMealById(s.mealId);
-      if (meal) this.snacksMeals.push(meal);
-    }
-    for (const d of mealPlan.dinner) {
-      const meal = this.mealService.getMealById(d.mealId);
-      if (meal) this.dinnerMeals.push(meal);
+    const [breakFastMeals, lunchMeals, snacksMeals, dinnerMeals] =
+      this.mealService.getWithActualMeals(mealPlan);
+    this.breakFastMeals = breakFastMeals;
+    this.lunchMeals = lunchMeals;
+    this.snacksMeals = snacksMeals;
+    this.dinnerMeals = dinnerMeals;
+    const hourOfDay = new Date().getHours();
+    if (hourOfDay < 10) this.nextMeal = 'breakfast';
+    else if (hourOfDay < 14) this.nextMeal = 'lunch';
+    else if (hourOfDay < 18) this.nextMeal = 'snacks';
+    else this.nextMeal = 'dinner';
+  }
+
+  get upcomingMeal() {
+    switch (this.nextMeal) {
+      case 'breakfast':
+        return this.breakFastMeals;
+      case 'lunch':
+        return this.lunchMeals;
+      case 'snacks':
+        return this.snacksMeals;
+      case 'dinner':
+        return this.dinnerMeals;
+      default:
+        return null;
     }
   }
 }

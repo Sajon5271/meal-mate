@@ -1,0 +1,34 @@
+<!-- <h3>Update Meal Plan</h3>
+<mat-chip-listbox class="chips">
+  <mat-chip-option
+    *ngFor="let day of weekdays"
+    [selected]="day === today"
+    (selectionChange)="changeSelected(day)"
+    >{{ day | titlecase }}
+  </mat-chip-option>
+</mat-chip-listbox>
+<div>You need {{ calorieNeeded }} calories daily as per your data.</div>
+<div *ngFor="let foods of currentMealPlanArray" class="coupleMealsCard">
+  <div class="titleText">
+    <div class="mediumText black-text mealTime">
+      {{ foods.daytime | titlecase }}
+    </div>
+    <div>
+      <div>Total : {{ calculateCalorie(foods.meals) }} calories</div>
+      <div>Reecommended arround: {{}} calories</div>
+    </div>
+  </div>
+  <div class="cardContainer">
+    <mat-card>
+      <div class="singleMealGroup">
+        <div *ngFor="let meal of foods.meals" class="singleFood">
+          <img mat-card-avatar src="{{ imageBase + meal.meal.mealPicture }}" />
+          <mat-label class="mealTitle">{{ meal.meal.mealName }}</mat-label>
+          <mat-label class="mealTitle"
+            >{{ meal.meal.mealCalorie }} calories</mat-label
+          >
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div> -->

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Meal } from './Meal.interface';
+import { MealPlan } from './MealPlan.interface';
 import { User } from './User.interface';
 import { UserData } from './UserData.interface';
 
@@ -28,6 +29,25 @@ export class FetchDataService {
       },
     });
   }
+  setMealPlan(mealPlan: {
+    saturday: MealPlan;
+    sunday: MealPlan;
+    monday: MealPlan;
+    tuesday: MealPlan;
+    wednesday: MealPlan;
+    thursday: MealPlan;
+    friday: MealPlan;
+  }) {
+    return this.http.post(this.baseUrl + '/updateMealPlan', mealPlan, {
+      headers: {
+        Authorization: `Bearer ${this.getAuthToken()}`,
+      },
+    });
+  }
+
+  generateAnonymousUserMealPlan(data: UserData): Observable<any> {
+    return this.http.post(this.baseUrl + '/anonymousGenerate', data);
+  }
 
   uploadPicture(file: File): Observable<any> {
     const formData = new FormData();
@@ -53,11 +73,14 @@ export class FetchDataService {
     return JSON.parse(localStorage.getItem('currentUserData') || '""');
   }
 
-  updateUser() {
+  updateUser(cb?: () => void) {
     this.getUser().subscribe((res) => {
       localStorage.setItem('currentUserData', JSON.stringify(res));
+      if (cb) cb();
     });
   }
 
-  
+  getAnonymousUserData() {
+    return JSON.parse(localStorage.getItem('anonymousUserData') || '""');
+  }
 }

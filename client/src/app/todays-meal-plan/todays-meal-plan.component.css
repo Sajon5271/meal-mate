@@ -1,9 +1,27 @@
 .upcomingMeal {
   display: flex;
   gap: 5px;
+  overflow-y: scroll;
   flex-wrap: nowrap;
+  margin-left: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .upcomingMealCard {
   min-width: 300px;
+}
+
+.upcomingMealContainer {
+  padding: 10px 0px 10px 10px;
+  width: 100%;
+}
+
+.upcomingMealText {
+  font-size: xx-large;
+}
+
+.todayContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }

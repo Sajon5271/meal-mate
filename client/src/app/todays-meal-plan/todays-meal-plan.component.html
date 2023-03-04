@@ -1,14 +1,47 @@
-<div class="upcomingMeal">
-  <mat-card *ngFor="let breakfast of breakFastMeals" class="upcomingMealCard">
-    <mat-card-header>
-      <mat-card-title-group>
-        <mat-card-title>{{ breakfast.mealName }}</mat-card-title>
-        <mat-card-subtitle
-          >{{ breakfast.mealCalorie }} calories</mat-card-subtitle
-        >
-        <mat-card-subtitle> 1 {{ breakfast.measurementUnit }}</mat-card-subtitle>
-        <img mat-card-avatar src="{{ imageBase + breakfast.mealPicture }}" />
-      </mat-card-title-group>
-    </mat-card-header>
-  </mat-card>
+<div class="todayContainer">
+  <div>
+    <h3>Today's Meal Plan</h3>
+  </div>
+
+  <div class="upcomingMealContainer">
+    <div class="black-text mediumText upcomingMealText">
+      Upcoming meal: {{ nextMeal | titlecase }}
+    </div>
+    <div class="upcomingMeal">
+      <mat-card *ngFor="let menu of upcomingMeal" class="upcomingMealCard">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{ menu.meal.mealName }}</mat-card-title>
+            <mat-card-subtitle
+              >{{ menu.meal.mealCalorie }} calories per
+              {{ menu.meal.measurementUnit || "piece" }}</mat-card-subtitle
+            >
+            <mat-card-subtitle>
+              x{{ menu.quantity }}
+              {{ menu.meal.measurementUnit }}</mat-card-subtitle
+            >
+            <img
+              mat-card-avatar
+              src="{{ imageBase + menu.meal.mealPicture }}"
+            />
+          </mat-card-title-group>
+        </mat-card-header>
+      </mat-card>
+    </div>
+  </div>
+
+  <mat-tab-group animationDuration="200ms">
+    <mat-tab label="Breakfast">
+      <app-meal-list [mealList]="breakFastMeals"></app-meal-list>
+    </mat-tab>
+    <mat-tab label="Lunch">
+      <app-meal-list [mealList]="lunchMeals"></app-meal-list>
+    </mat-tab>
+    <mat-tab label="Snacks">
+      <app-meal-list [mealList]="snacksMeals"></app-meal-list>
+    </mat-tab>
+    <mat-tab label="Dinner">
+      <app-meal-list [mealList]="dinnerMeals"></app-meal-list>
+    </mat-tab>
+  </mat-tab-group>
 </div>

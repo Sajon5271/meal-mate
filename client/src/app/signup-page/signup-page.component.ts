@@ -46,12 +46,15 @@ export class SignupPageComponent implements OnInit {
       this.authService.signUpUser({ email, password }).subscribe({
         next: (res) => {
           sessionStorage.setItem('accessToken', res.accessToken);
-          this.dataService
-            .getUser()
-            .subscribe((res) =>
-              localStorage.setItem('currentUserData', JSON.stringify(res))
-            );
-          this.router.navigate(['update-profile']);
+          this.dataService.getUser().subscribe((res) => {
+            const anonData = this.dataService.getAnonymousUserData();
+            if (anonData) {
+              this.dataService.setData(anonData.userData).subscribe();
+              this.dataService.setMealPlan(anonData.mealPlan).subscribe();
+            }
+            localStorage.setItem('currentUserData', JSON.stringify(res));
+            this.router.navigate(['update-profile']);
+          });
         },
         error: (err) => {
           this.errorMessage = err.error.message;

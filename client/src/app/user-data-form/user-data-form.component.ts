@@ -88,9 +88,16 @@ export class UserDataFormComponent implements OnInit {
         complete: () => {
           this.dataService.getUser().subscribe((user) => {
             localStorage.setItem('currentUserData', JSON.stringify(user));
-            // this.router.navigate(['/generated-meal-plan']);
-            this.router.navigate(['/home']); //change later
+            this.router.navigate(['generated-meal-plan']);
+            // this.router.navigate(['/mealplan/today']); //change later
           });
+        },
+      });
+    } else {
+      this.dataService.generateAnonymousUserMealPlan(dataObj).subscribe({
+        next: (anonUser) => {
+          localStorage.setItem('anonymousUserData', JSON.stringify(anonUser));
+          this.router.navigate(['generated-meal-plan']);
         },
       });
     }
