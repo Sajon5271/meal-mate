@@ -8,7 +8,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 const googleOauthConfig: AuthConfig = {
   issuer: 'https://accounts.google.com',
   strictDiscoveryDocumentValidation: false,
-  redirectUri: window.location.origin,
+  redirectUri: 'http://localhost:4200/redirect_google',
   clientId:
     '266306713628-3sr7nu7coupaa39tt47n0gpe0teliddo.apps.googleusercontent.com',
   scope: 'openid profile email',
@@ -41,7 +41,9 @@ export class AuthenticateService {
           this.oAuthService.initLoginFlow();
         } else {
           this.oAuthService.loadUserProfile().then((userProfile) => {
-            console.log(userProfile);
+            localStorage.setItem('google', JSON.stringify(userProfile));
+            return userProfile;
+            // this.signUpUser({email: })
           });
         }
       });

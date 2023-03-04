@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { GeneratedMealPlanComponent } from './generated-meal-plan/generated-meal-plan.component';
+import { GoogleOauthComponent } from './google-oauth/google-oauth.component';
 import { HomePageComponent } from './home-page-component/home-page-component.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SignupPageComponent } from './signup-page/signup-page.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'register', component: SignupPageComponent },
   { path: 'home', component: HomePageComponent },
   { path: 'questions', component: UserDataFormComponent },
+  { path: 'redirect_google', component: GoogleOauthComponent },
   {
     path: 'generated-meal-plan',
     component: GeneratedMealPlanComponent,

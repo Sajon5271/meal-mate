@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticateService } from './authenticate.service';
-import { FetchDataService } from './fetch-data.service';
 import { MealsService } from './meals.service';
 
 @Component({
@@ -13,7 +12,6 @@ export class AppComponent implements OnInit {
 
   constructor(
     private authClient: AuthenticateService,
-    private fetchData: FetchDataService,
     private mealsService: MealsService
   ) {}
 

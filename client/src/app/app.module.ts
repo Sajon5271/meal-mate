@@ -21,6 +21,7 @@ import { MealListComponent } from './meal-list/meal-list.component';
 import { GeneratedMealPlanComponent } from './generated-meal-plan/generated-meal-plan.component';
 import { UpdateMealPlanComponent } from './update-meal-plan/update-meal-plan.component';
 import { HamburgerMenuComponent } from './hamburger-menu/hamburger-menu.component';
+import { GoogleOauthComponent } from './google-oauth/google-oauth.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { HamburgerMenuComponent } from './hamburger-menu/hamburger-menu.componen
     GeneratedMealPlanComponent,
     UpdateMealPlanComponent,
     HamburgerMenuComponent,
+    GoogleOauthComponent,
   ],
   imports: [
     BrowserModule,

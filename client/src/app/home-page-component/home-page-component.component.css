@@ -1,0 +1,51 @@
+.svgContainer {
+  background: url("/assets/back.svg");
+  position: absolute;
+  height: 685px;
+  width: 430px;
+  top: 247px;
+  /* z-index: 2; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.firstPageContainer {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+  -ms-scroll-snap-type: y mandatory;
+}
+section {
+  width: 100vw;
+  height: 100vh;
+  scroll-snap-align: start;
+}
+
+section {
+  position: relative;
+}
+
+.inverted {
+  rotate: 180deg;
+  top: -250px;
+  z-index: -1;
+}
+.heroCall {
+  margin-top: 300px;
+  line-height: 64px;
+  max-width: 70vw;
+  color: white;
+}
+
+.diffCol {
+  color: #23233c;
+}
+
+.callToAction {
+  /* display: flex;
+  max-width: 70vw; */
+}

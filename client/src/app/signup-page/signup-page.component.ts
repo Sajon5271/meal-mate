@@ -62,7 +62,9 @@ export class SignupPageComponent implements OnInit {
         },
       });
   }
-  googleOAuth() {}
+  googleOAuth() {
+    this.authService.googleOAuthLogin();
+  }
   facebookOAuth() {}
 
   get password() {
