@@ -17,7 +17,7 @@ router.post('/register', UserController.createNewUser);
 router.post('/login', UserController.login);
 router.post('/setData', authMiddleware, UserController.setUserData);
 
-router.get('/user', authMiddleware, UserController.getUser)
+router.get('/user', authMiddleware, UserController.getUser);
 
 router.post('/uploadProfilePic', authMiddleware, UserController.uploadPic);
 
@@ -32,8 +32,8 @@ router.put('/updateMealPlan', authMiddleware, UserController.updateMealPlans);
 router.put('/updateUserInfo', authMiddleware, UserController.updateUserInfo);
 router.put('/updateUserData', authMiddleware, UserController.setUserData);
 
-router.get('/*', (req, res, next) => {
-  res.status(404).send('Not Found');
-});
+// router.get('/*', (req, res, next) => {
+//   res.status(404).send('Not Found');
+// });
 
 module.exports = router;

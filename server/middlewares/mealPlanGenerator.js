@@ -11,11 +11,35 @@ const generateMealPlan = (req) => {
 
   const calorieNeeded = calorieCalculate(userData);
   req.currentUser.userData.calculatedDailyCalorie = calorieNeeded;
-  const mealPlanData = fetchPresetData();
-  getAllMealCalorie();
-  const mealplan = generator(mealPlanData, calorieNeeded);
-  req.currentUser.mealPlan = mealplan;
-  return;
+  // const mealPlanData = fetchPresetData();
+  // getAllMealCalorie();
+  // const mealplan = generator(mealPlanData, calorieNeeded);
+  console.log('here');
+  const days = [
+    'saturday',
+    'sunday',
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+  ];
+  for (const day of days) {
+    req.currentUser.mealPlan[day] = {
+      breakfast: [
+        { mealId: '63fdca71ad93589dcd03571d', quantity: 2 },
+        { mealId: '63fdca71ad93589dcd03571e', quantity: 1 },
+        { mealId: '63fdca71ad93589dcd03571f', quantity: 1 },
+      ],
+      lunch: [
+        { mealId: '63fdca71ad93589dcd035720', quantity: 1 },
+        { mealId: '63fdca71ad93589dcd035721', quantity: 1 },
+      ],
+      snacks: [{ mealId: '63fdca71ad93589dcd035746', quantity: 1 }],
+      dinner: [{ mealId: '63fdca71ad93589dcd03574b', quantity: 1 }],
+    };
+  }
+
   // const distributedCalories = calorieDivide(calorieNeeded);
 };
 const calorieCalculate = (userData) => {

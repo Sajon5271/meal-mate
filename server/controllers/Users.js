@@ -1,6 +1,7 @@
 const Users = require('../models/Users');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const path = require('path');
 const MealUtil = require('./Meals');
 const generateMealPlan = require('../middlewares/mealPlanGenerator');
 const { SECRET_KEY, PORT } = require('../configs');
@@ -60,6 +61,7 @@ const setUserData = async (req, res, next) => {
     generateMealPlan(req);
     const cal = req.currentUser.userData.calculatedDailyCalorie;
     if (cal > 1000 || cal < 4000) {
+      console.log(cal);
       req.currentUser.dataAlreadyGiven = true;
       res.status(201).send({ message: 'Updated data' });
     } else res.status(400).send({ error: '400', message: 'Bad data' });
@@ -97,14 +99,14 @@ const getMealPlans = async (req, res, next) => {
 const updateMealPlans = async (req, res, next) => {
   req.currentUser.mealPlan = req.body;
   await req.currentUser.save();
-  res.status(201).send('Updated');
+  res.status(201).send({ msg: 'Updated' });
   next();
 };
 
 const updateUserInfo = async (req, res, next) => {
-  req.currentUser = { ...req.currentUser, ...req.body };
+  req.currentUser.name = req.body.name;
   await req.currentUser.save();
-  res.status(201).send('Updated');
+  res.status(201).send({ msg: 'Updated' });
   next();
 };
 
@@ -114,9 +116,17 @@ const uploadPic = async (req, res, next) => {
   }
   const { profilePic } = req.files;
   if (!profilePic) return res.status(400).send('Invalid image');
-  if (/^image/.test(profilePic.mimetype)) return res.sendStatus(400);
+  if (!/^image/.test(profilePic.mimetype)) {
+    return res.sendStatus(400);
+  }
 
-  profilePic.mv(`/images/user/${req.currentUser._id}-${profilePic.name}`);
+  await profilePic.mv(
+    __dirname +
+      '/../public/images/user/' +
+      req.currentUser._id +
+      '-' +
+      profilePic.name
+  );
   req.currentUser.picturePath = `http://localhost:${PORT}/images/user/${req.currentUser._id}-${profilePic.name}`;
   await req.currentUser.save();
   res.sendStatus(201);

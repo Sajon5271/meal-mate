@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const fileUploadUtil = require('express-fileupload');
-
+const { join } = require('path');
 const router = require('./routes');
 const { PORT } = require('./configs');
 
@@ -23,8 +23,8 @@ app.use(
     abortOnLimit: true,
   })
 );
-app.use(express.static('public'));
 app.use(router);
+app.use(express.static(join(__dirname + '/public')));
 
 app.listen(PORT, (err) => {
   if (err) {
@@ -33,4 +33,3 @@ app.listen(PORT, (err) => {
     console.log(`🚀 Server is listening on port ${PORT}!`);
   }
 });
-
