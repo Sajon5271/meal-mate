@@ -16,10 +16,12 @@
       {{ foods.daytime | titlecase }}
     </div>
     <div class="calorieInfoWithCard">
-      <div>Total : {{ calculateCalorie(foods.meals) }} calories</div>
-      <div class="recommendedText">
-        Reecommended arround:
-        {{ recommendedCalorieIntake(foods.daytime) | number : "1.0-0" }}
+      <div>
+        Total : {{ calculateCalorie(foods.meals) }} /
+        {{
+          recommendedCalorieIntake(foods.daytime) | number : "1.0-0"
+        }}
+        calories
       </div>
     </div>
   </div>
@@ -81,4 +83,3 @@
     ></path>
   </svg>
 </div>
-

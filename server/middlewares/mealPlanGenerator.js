@@ -75,11 +75,12 @@ const generator = async (mealPlan, calorieNeeded) => {
           const dCal = addAllCalorieOfaPreset(d);
           dinnerCalories.push(dCal);
           const totalCal = bfCal + lCal + sCal + dCal;
+          
           if (
-            Math.abs(bfCal / totalCal - 0.27) > 0.03 ||
-            Math.abs(lCal / totalCal - 0.37) > 0.03 ||
-            Math.abs(sCal / totalCal - 0.12) > 0.03 ||
-            Math.abs(dCal / totalCal - 0.27) > 0.03 ||
+            Math.abs(bfCal / totalCal - 0.27) > 0.05 ||
+            Math.abs(lCal / totalCal - 0.37) > 0.05 ||
+            Math.abs(sCal / totalCal - 0.12) > 0.05 ||
+            Math.abs(dCal / totalCal - 0.27) > 0.05 ||
             Math.abs(calorieNeeded - totalCal) > 200
           ) {
             continue;
@@ -100,8 +101,12 @@ const generator = async (mealPlan, calorieNeeded) => {
   eligibleMealPlan.sort((a, b) => {
     return a.diff - b.diff;
   });
-  while (eligibleMealPlan.length < 6) {
-    eligibleMealPlan = [...eligibleMealPlan, ...eligibleMealPlan];
+  if (eligibleMealPlan.length)
+    while (eligibleMealPlan.length < 6) {
+      eligibleMealPlan = [...eligibleMealPlan, ...eligibleMealPlan];
+    }
+  else {
+    return undefined;
   }
   // eligibleMealPlan.forEach((el, idx) => {
   //   if (el.diff < lowestDiff) {

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
 import { GeneratedMealPlanComponent } from './components/generated-meal-plan/generated-meal-plan.component';
 import { GoogleOauthComponent } from './components/google-oauth/google-oauth.component';
+import { HistoryComponent } from './components/history/history.component';
 import { HomePageComponent } from './components/home-page-component/home-page-component.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { SignupPageComponent } from './components/signup-page/signup-page.component';
@@ -30,6 +31,11 @@ const routes: Routes = [
   {
     path: 'update-mealplan',
     component: UpdateMealPlanComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'history',
+    component: HistoryComponent,
     canActivate: [AuthGuard],
   },
   {

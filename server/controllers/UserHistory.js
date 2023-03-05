@@ -24,7 +24,14 @@ const getLastSevenDaysHistory = async (req, res, next) => {
 const saveTodaysHistory = async (req, res, next) => {
   try {
     const todaysData = req.body;
-    await UserHistory.create({ mealsData: todaysData });
+    const todaysSavedData = await UserHistory.findOne({
+      recordDate: { $gte: new Date().toDateString() },
+    });
+    if (!todaysSavedData) await UserHistory.create({ mealsData: todaysData });
+    else {
+      todaysSavedData.mealsData = todaysData;
+      await todaysSavedData.save();
+    }
     res.status(201).send({ msg: 'Stored' });
   } catch (error) {
     console.log(error);
@@ -32,4 +39,8 @@ const saveTodaysHistory = async (req, res, next) => {
   }
 };
 
-module.exports = {};
+module.exports = {
+  getAllHistory,
+  getLastSevenDaysHistory,
+  saveTodaysHistory,
+};

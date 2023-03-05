@@ -6,18 +6,24 @@ const router = require('./routes');
 const http = require('http');
 const { PORT } = require('./configs');
 const { Server } = require('socket.io');
-
-const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
+const schedule = require('node-schedule');
 
 const corsConfig = {
   origin: 'http://localhost:4200',
   credentials: true,
 };
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: corsConfig,
+});
 
 io.on('connection', (socket) => {
   console.log('A request Came through');
+});
+schedule.scheduleJob('00 * * * *', () => {
+  io.emit('saveTodaysData');
+  console.log('Sent req');
 });
 
 app.use(cors(corsConfig));

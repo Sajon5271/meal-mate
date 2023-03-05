@@ -26,6 +26,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { LoadingInterceptor } from './loading.interceptor';
 import { PickMealDialogueComponent } from './components/pick-meal-dialogue/pick-meal-dialogue.component';
 import { UpdateUserDataComponent } from './components/update-user-data/update-user-data.component';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { HistoryComponent } from './components/history/history.component';
+
+const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
 @NgModule({
   declarations: [
@@ -46,6 +50,7 @@ import { UpdateUserDataComponent } from './components/update-user-data/update-us
     SpinnerComponent,
     PickMealDialogueComponent,
     UpdateUserDataComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +61,7 @@ import { UpdateUserDataComponent } from './components/update-user-data/update-us
     MaterialUIModule,
     FormsModule,
     ReactiveFormsModule,
+    SocketIoModule.forRoot(config),
   ],
   providers: [
     {

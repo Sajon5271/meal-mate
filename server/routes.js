@@ -3,7 +3,7 @@ const MealController = require('./controllers/Meals');
 const UserController = require('./controllers/Users');
 const authMiddleware = require('./middlewares/auth');
 const generateMealPlan = require('./middlewares/mealPlanGenerator');
-
+const UserHistory = require('./controllers/UserHistory');
 //Meals
 router.post('/meal/createOne', MealController.createAMeal);
 router.post('/meal/createMany', MealController.createMeals);
@@ -36,5 +36,7 @@ router.put('/updateUserData', authMiddleware, UserController.setUserData);
 // router.get('/*', (req, res, next) => {
 //   res.status(404).send('Not Found');
 // });
+
+router.post('/saveTodaysData', authMiddleware, UserHistory.saveTodaysHistory);
 
 module.exports = router;

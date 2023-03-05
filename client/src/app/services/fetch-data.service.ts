@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { DailyMeals } from '../interfaces/DailyMeals.interface';
 import { Meal } from '../interfaces/Meal.interface';
 import { MealPlan } from '../interfaces/MealPlan.interface';
 import { User } from '../interfaces/User.interface';
@@ -47,6 +48,18 @@ export class FetchDataService {
 
   generateAnonymousUserMealPlan(data: UserData): Observable<any> {
     return this.http.post(this.baseUrl + '/anonymousGenerate', data);
+  }
+
+  sendTodaysData(data: MealPlan): Observable<{ msg: string }> {
+    return this.http.post<{ msg: string }>(
+      this.baseUrl + '/saveTodaysData',
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${this.getAuthToken()}`,
+        },
+      }
+    );
   }
 
   uploadPicture(file: File): Observable<any> {
