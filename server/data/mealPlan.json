@@ -145,6 +145,17 @@
       { "mealId": "640020bea6a3f1b0e1e7f233", "quantity": 1 },
       { "mealId": "640020bea6a3f1b0e1e7f23d", "quantity": 1 },
       { "mealId": "640020bea6a3f1b0e1e7f24e", "quantity": 2 }
+    ],
+    [
+      { "mealId": "640020bea6a3f1b0e1e7f239", "quantity": 2 },
+      { "mealId": "640020bea6a3f1b0e1e7f23a", "quantity": 1 }
+    ],
+    [{ "mealId": "640020bea6a3f1b0e1e7f234", "quantity": 2 }],
+    [
+      { "mealId": "640020bea6a3f1b0e1e7f221", "quantity": 1 },
+      { "mealId": "640020bea6a3f1b0e1e7f222", "quantity": 1 },
+      { "mealId": "640020bea6a3f1b0e1e7f225", "quantity": 2 },
+      { "mealId": "640020bea6a3f1b0e1e7f223", "quantity": 1 }
     ]
   ],
   "snacks": [

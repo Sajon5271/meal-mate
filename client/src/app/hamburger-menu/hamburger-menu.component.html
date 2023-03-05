@@ -2,8 +2,8 @@
   <mat-icon>menu</mat-icon>
 </button>
 <mat-menu #beforeMenu="matMenu" xPosition="before">
-  <button mat-menu-item><span>Home</span></button>
-  <button mat-menu-item><span>Meal Plan</span></button>
+  <button routerLink="/home" mat-menu-item><span>Home</span></button>
+  <button routerLink="/questions" mat-menu-item><span>Meal Plan</span></button>
   <div *ngIf="!loggedIn">
     <mat-divider></mat-divider>
     <button mat-menu-item routerLink="/login"><span>Login</span></button>
