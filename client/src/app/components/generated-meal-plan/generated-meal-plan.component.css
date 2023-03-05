@@ -73,3 +73,33 @@
   align-items: center;
   margin: 20px;
 }
+
+.custom-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: -99;
+}
+
+.custom-svg svg {
+  position: relative;
+  display: block;
+  width: calc(126% + 1.3px);
+  height: 231px;
+  transform: rotateY(180deg);
+}
+
+.custom-svg .shape-fill {
+  fill: #6cc57c;
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+  .custom-svg svg {
+    width: calc(1300% + 1.3px);
+    height: 300px;
+  }
+}

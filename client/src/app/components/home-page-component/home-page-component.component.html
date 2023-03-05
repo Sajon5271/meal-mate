@@ -19,10 +19,70 @@
   </section>
   <section class="secondSection">
     <div class="svgContainer inverted"></div>
-    <div class="svgContainer"></div>
+    <div class="secondPage">
+      <h3>Not sure where to start?</h3>
+      <div class="mediumText black-text textInfo">
+        Simply answer some questions to get your personalized meal plan
+      </div>
+      <app-secondary-button
+        routerLink="/questions"
+        text="Start now"
+      ></app-secondary-button>
+    </div>
+    <div class="svgContainer secondPageBottom"></div>
   </section>
   <section class="thirdSection">
     <div class="svgContainer inverted"></div>
-    <div class="svgContainer"></div>
+    <div class="thirdPage">
+      <h3>Testimonials</h3>
+      <mat-card class="cardReview">
+        <mat-card-header>
+          <img mat-card-avatar src="assets/sajon.png" />
+          <mat-card-title>Sajon</mat-card-title>
+          <mat-card-subtitle>
+            <mat-icon color="warn">star</mat-icon>
+            <mat-icon color="warn">star</mat-icon>
+            <mat-icon color="warn">star</mat-icon>
+            <mat-icon color="warn">star</mat-icon>
+            <mat-icon color="warn">star</mat-icon>
+          </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="mediumText black-text reviewText">
+            This is the app I needed to hit the 150kg mark I am aiming for.
+            Thanks to the app I can reach my goal! Thanks!
+          </p>
+        </mat-card-content>
+      </mat-card>
+      <app-secondary-button
+        class="signUpButton"
+        routerLink="/register"
+        text="Sign Up"
+      ></app-secondary-button>
+      <mat-divider></mat-divider>
+    </div>
+    <div class="homeFooter">
+      <div>
+        <div class="headerBottom">Product</div>
+        <div>Reviews</div>
+        <div>My Meal Plan</div>
+        <div>My Subscription</div>
+        <div>Contact Us</div>
+      </div>
+      <div>
+        <div class="headerBottom">Useful Resources</div>
+        <div>Healthy Diet</div>
+        <div>Know Your Body</div>
+        <div>Blogs</div>
+        <div>FAQs</div>
+      </div>
+      <div>
+        <div class="headerBottom">Terms and Policy</div>
+        <div>Privacy Policy</div>
+        <div>Terms and Condition</div>
+        <div>Subscription Terms</div>
+      </div>
+    </div>
+    <div class="svgContainer thirdPageBottom"></div>
   </section>
 </div>
