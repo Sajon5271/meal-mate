@@ -57,3 +57,21 @@
   align-items: center;
   margin: 20px;
 }
+
+.addButton {
+  background-color: rgba(65, 64, 64, 0.123);
+  height: 160px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  border-radius: 20px;
+}
+
+.updateButton {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+}

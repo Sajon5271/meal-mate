@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DailyMeals } from '../interfaces/DailyMeals.interface';
+import { FullMealPlan } from '../interfaces/FullMealPlan.interface';
 import { Meal } from '../interfaces/Meal.interface';
 import { MealPlan } from '../interfaces/MealPlan.interface';
 
@@ -27,15 +28,7 @@ export class MealsService {
     return JSON.parse(localStorage.getItem('Meals') || '[]');
   }
 
-  getUserMealPlan(): {
-    saturday: MealPlan;
-    sunday: MealPlan;
-    monday: MealPlan;
-    tuesday: MealPlan;
-    wednesday: MealPlan;
-    thursday: MealPlan;
-    friday: MealPlan;
-  } {
+  getUserMealPlan(): FullMealPlan {
     return JSON.parse(localStorage.getItem('currentUserData') || '""').mealPlan;
   }
 

@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>Pick a food to add</h1>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>Food</mat-label>
+    <input
+      matInput
+      aria-label="State"
+      [matAutocomplete]="auto"
+      [formControl]="mealStateControl"
+    />
+    <mat-autocomplete
+      #auto="matAutocomplete"
+      [displayWith]="displayFn"
+      (optionSelected)="changeCurrMeal($event.option.value)"
+    >
+      <mat-option *ngFor="let meal of filteredMeals | async" [value]="meal">
+        <img
+          alt=""
+          class="example-option-img"
+          [src]="fullImagePath(meal.mealPicture)"
+          height="25"
+        />
+        <span>{{ meal.mealName }}</span> |
+        <small>Calorie: {{ meal.mealCalorie }}</small>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label
+      >How many {{ currMeal ? currMeal.measurementUnit + "s" : "" }}</mat-label
+    >
+    <input matInput [formControl]="quantityForm" type="number" value="" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="formValue" cdkFocusInitial>Ok</button>
+</div>

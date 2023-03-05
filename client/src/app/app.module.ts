@@ -24,6 +24,7 @@ import { HamburgerMenuComponent } from './components/hamburger-menu/hamburger-me
 import { GoogleOauthComponent } from './components/google-oauth/google-oauth.component';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { LoadingInterceptor } from './loading.interceptor';
+import { PickMealDialogueComponent } from './components/pick-meal-dialogue/pick-meal-dialogue.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { LoadingInterceptor } from './loading.interceptor';
     HamburgerMenuComponent,
     GoogleOauthComponent,
     SpinnerComponent,
+    PickMealDialogueComponent,
   ],
   imports: [
     BrowserModule,

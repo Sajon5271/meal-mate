@@ -38,7 +38,7 @@ export class FetchDataService {
     thursday: MealPlan;
     friday: MealPlan;
   }) {
-    return this.http.post(this.baseUrl + '/updateMealPlan', mealPlan, {
+    return this.http.put(this.baseUrl + '/updateMealPlan', mealPlan, {
       headers: {
         Authorization: `Bearer ${this.getAuthToken()}`,
       },
@@ -71,6 +71,10 @@ export class FetchDataService {
 
   getLoggedInUser(): User {
     return JSON.parse(localStorage.getItem('currentUserData') || '""');
+  }
+
+  updateLoggedInUser(user: User) {
+    localStorage.setItem('currentUserData', JSON.stringify(user));
   }
 
   updateUser(cb?: () => void) {

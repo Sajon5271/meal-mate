@@ -14,6 +14,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -31,6 +32,7 @@ const MaterialComponents = [
   MatMenuModule,
   MatDividerModule,
   MatProgressSpinnerModule,
+  MatDialogModule,
 ];
 
 @NgModule({

@@ -35,11 +35,23 @@
           <mat-label class="mealTitle"
             >x{{ meal.quantity + " " + meal.meal.measurementUnit }}
           </mat-label>
-          <button mat-icon-button color="warn">
+          <button
+            mat-icon-button
+            color="warn"
+            (click)="deleteMealFromPlan(foods.daytime, meal.meal._id)"
+          >
             <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+        <div class="addButton">
+          <button mat-icon-button (click)="openDialog(foods.daytime)">
+            <mat-icon>add</mat-icon>
           </button>
         </div>
       </div>
     </mat-card>
   </div>
+</div>
+<div class="updateButton">
+  <app-secondary-button text="Update" (click)="updateMeals()"></app-secondary-button>
 </div>
