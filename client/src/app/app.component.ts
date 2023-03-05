@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthenticateService } from './authenticate.service';
-import { MealsService } from './meals.service';
+import { AuthenticateService } from './services/authenticate.service';
+import { MealsService } from './services/meals.service';
 
 @Component({
   selector: 'app-root',

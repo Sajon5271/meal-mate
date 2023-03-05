@@ -1,0 +1,50 @@
+<div class="containerUpdate">
+  <h3>Welcome</h3>
+  <form [formGroup]="userInfoForm" (submit)="onSubmit()" class="inputForm">
+    <app-input-field
+      title="Name"
+      inputType="text"
+      [controller]="userInfoForm.controls.name"
+      appearance="outline"
+    ></app-input-field>
+    <app-input-field
+      title="email"
+      inputType="email"
+      [controller]="userInfoForm.controls.email"
+      [isDisabled]="true"
+      appearance="outline"
+    ></app-input-field>
+    <input
+      formControlName="picture"
+      type="file"
+      class="file-input"
+      accept="image/*"
+      (change)="onImageChange($event)"
+      #fileUpload
+    />
+
+    <div class="fileInputForm">
+      <div class="file-upload">
+        {{ pictureName || "No file uploaded yet." }}
+      </div>
+      <button
+        mat-icon-button
+        type="button"
+        color="primary"
+        class="upload-btn"
+        (click)="fileUpload.click()"
+      >
+        <mat-icon>file_upload</mat-icon>
+      </button>
+    </div>
+    <app-secondary-button
+      type="submit"
+      text="Update Profile"
+    ></app-secondary-button>
+    <img
+      class="imageProfile"
+      *ngIf="profilePicPath !== 'http://localhost:3000/images/user/profile.jpg'"
+      [src]="profilePicPath"
+    />
+  </form>
+</div>

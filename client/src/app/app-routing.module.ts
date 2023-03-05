@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth.guard';
-import { GeneratedMealPlanComponent } from './generated-meal-plan/generated-meal-plan.component';
-import { GoogleOauthComponent } from './google-oauth/google-oauth.component';
-import { HomePageComponent } from './home-page-component/home-page-component.component';
-import { LoginPageComponent } from './login-page/login-page.component';
-import { SignupPageComponent } from './signup-page/signup-page.component';
-import { TodaysMealPlanComponent } from './todays-meal-plan/todays-meal-plan.component';
-import { UpdateMealPlanComponent } from './update-meal-plan/update-meal-plan.component';
-import { UpdateProfileComponent } from './update-profile/update-profile.component';
-import { UserDataFormComponent } from './user-data-form/user-data-form.component';
+import { GeneratedMealPlanComponent } from './components/generated-meal-plan/generated-meal-plan.component';
+import { GoogleOauthComponent } from './components/google-oauth/google-oauth.component';
+import { HomePageComponent } from './components/home-page-component/home-page-component.component';
+import { LoginPageComponent } from './components/login-page/login-page.component';
+import { SignupPageComponent } from './components/signup-page/signup-page.component';
+import { TodaysMealPlanComponent } from './components/todays-meal-plan/todays-meal-plan.component';
+import { UpdateMealPlanComponent } from './components/update-meal-plan/update-meal-plan.component';
+import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { UserDataFormComponent } from './components/user-data-form/user-data-form.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
