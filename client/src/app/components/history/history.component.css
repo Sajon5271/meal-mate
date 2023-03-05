@@ -1,0 +1,112 @@
+.singleMealGroup {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mealTime {
+  font-size: larger;
+  margin: 10px;
+  flex-grow: 1;
+}
+.mealTitle {
+  max-width: 90px;
+  text-align: center;
+}
+
+.chips {
+  margin: 10px;
+}
+
+.cardContainer {
+  width: 90vw;
+}
+
+.singleFood {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.titleText {
+  display: flex;
+  justify-content: space-between;
+  width: 95vw;
+}
+
+.notLoggedIn {
+  background-color: antiquewhite;
+  padding: 25px;
+  display: inline-block;
+}
+
+.signUpLink {
+  background-color: rgb(12, 21, 104);
+  margin-top: 10px;
+  padding: 15px 30px;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.dailyCalorieText {
+  margin: 10px;
+  font-size: larger;
+}
+
+.calorieInfoWithCard {
+  max-width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.recommendedText {
+  font-size: small;
+}
+
+.coupleMealsCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.custom-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: -99;
+}
+
+.custom-svg svg {
+  position: relative;
+  display: block;
+  width: calc(126% + 1.3px);
+  height: 231px;
+  transform: rotateY(180deg);
+}
+
+.custom-svg .shape-fill {
+  fill: #6cc57c;
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+  .custom-svg svg {
+    width: calc(1300% + 1.3px);
+    height: 300px;
+  }
+}
+
+.date {
+  font-size: larger;
+  margin-left: 20px;
+}

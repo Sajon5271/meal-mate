@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DailyMeals } from '../interfaces/DailyMeals.interface';
 import { Meal } from '../interfaces/Meal.interface';
+import { MealHistory } from '../interfaces/MealHistory.interface';
 import { MealPlan } from '../interfaces/MealPlan.interface';
 import { User } from '../interfaces/User.interface';
 import { UserData } from '../interfaces/UserData.interface';
@@ -60,6 +61,14 @@ export class FetchDataService {
         },
       }
     );
+  }
+
+  getHistory(): Observable<MealHistory[]> {
+    return this.http.get<MealHistory[]>(this.baseUrl + '/user-history', {
+      headers: {
+        Authorization: `Bearer ${this.getAuthToken()}`,
+      },
+    });
   }
 
   uploadPicture(file: File): Observable<any> {

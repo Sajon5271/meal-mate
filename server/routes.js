@@ -38,5 +38,11 @@ router.put('/updateUserData', authMiddleware, UserController.setUserData);
 // });
 
 router.post('/saveTodaysData', authMiddleware, UserHistory.saveTodaysHistory);
+router.get('/user-history', authMiddleware, UserHistory.getAllHistory);
+router.post(
+  '/user-history/7-days',
+  authMiddleware,
+  UserHistory.getLastSevenDaysHistory
+);
 
 module.exports = router;

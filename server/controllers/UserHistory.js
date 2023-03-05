@@ -12,7 +12,7 @@ const getAllHistory = async (req, res, next) => {
 const getLastSevenDaysHistory = async (req, res, next) => {
   try {
     const allHistory = await UserHistory.find({
-      recordDate: { $gt: Date.now() - 7 * 24 * 60 * 60 * 1000 },
+      recordDate: { $gt: new Date().setDate(new Date().getDate() - 7) },
     });
     res.status(200).send(allHistory);
   } catch (err) {

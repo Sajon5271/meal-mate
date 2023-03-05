@@ -1,1 +1,39 @@
-<p>history works!</p>
+<h3>Your history</h3>
+<div *ngFor="let day of HistoryWithMeals; let i = index">
+  <div class="date mediumText black-text">{{ dateArray[i] | date }}</div>
+  <div
+    *ngFor="let foods of getCurrentMealPlanArray(day)"
+    class="coupleMealsCard"
+  >
+    <div class="titleText">
+      <div class="mediumText black-text mealTime">
+        {{ foods.daytime | titlecase }}
+      </div>
+      <div class="calorieInfoWithCard">
+        <div>
+          Total : {{ calculateCalorie(foods.meals) }}
+          calories
+        </div>
+      </div>
+    </div>
+    <div class="cardContainer">
+      <mat-card>
+        <div class="singleMealGroup">
+          <div *ngFor="let meal of foods.meals" class="singleFood">
+            <img
+              mat-card-avatar
+              src="{{ imageBase + meal.meal.mealPicture }}"
+            />
+            <mat-label class="mealTitle">{{ meal.meal.mealName }}</mat-label>
+            <mat-label class="mealTitle"
+              >{{ meal.meal.mealCalorie }} calories</mat-label
+            >
+            <mat-label class="mealTitle"
+              >x{{ meal.quantity + " " + meal.meal.measurementUnit }}
+            </mat-label>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
