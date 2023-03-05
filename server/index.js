@@ -3,14 +3,22 @@ const cors = require('cors');
 const fileUploadUtil = require('express-fileupload');
 const { join } = require('path');
 const router = require('./routes');
+const http = require('http');
 const { PORT } = require('./configs');
+const { Server } = require('socket.io');
 
 const app = express();
+const server = http.createServer(app);
+const io = new Server(server);
 
 const corsConfig = {
   origin: 'http://localhost:4200',
   credentials: true,
 };
+
+io.on('connection', (socket) => {
+  console.log('A request Came through');
+});
 
 app.use(cors(corsConfig));
 
@@ -26,7 +34,7 @@ app.use(
 app.use(router);
 app.use(express.static(join(__dirname + '/public')));
 
-app.listen(PORT, (err) => {
+server.listen(PORT, (err) => {
   if (err) {
     console.log(`😞 Sorry, something went wrong! ${err}`);
   } else {

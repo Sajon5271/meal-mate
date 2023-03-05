@@ -61,7 +61,7 @@ const generator = async (mealPlan, calorieNeeded) => {
   const lunchCalories = [];
   const snacksCalories = [];
   const dinnerCalories = [];
-  const eligibleMealPlan = [];
+  let eligibleMealPlan = [];
   for (const [bfidx, bf] of Object.entries(mealPlan.breakfasts)) {
     const bfCal = addAllCalorieOfaPreset(bf);
     breakfastCalories.push(bfCal);
