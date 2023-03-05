@@ -30,7 +30,7 @@ export class SignupPageComponent implements OnInit {
   );
 
   ngOnInit() {
-    if (this.authService.isLoggedIn()) this.router.navigate(['home']);
+    if (this.authService.isLoggedIn()) this.router.navigate(['mealplan/today']);
     this.signUpForm.valueChanges.subscribe(() => {
       if (this.signUpForm.valid && this.password === this.rePassword) {
         this.passwordMatches = true;

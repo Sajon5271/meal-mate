@@ -25,6 +25,7 @@ import { GoogleOauthComponent } from './components/google-oauth/google-oauth.com
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { LoadingInterceptor } from './loading.interceptor';
 import { PickMealDialogueComponent } from './components/pick-meal-dialogue/pick-meal-dialogue.component';
+import { UpdateUserDataComponent } from './components/update-user-data/update-user-data.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { PickMealDialogueComponent } from './components/pick-meal-dialogue/pick-
     GoogleOauthComponent,
     SpinnerComponent,
     PickMealDialogueComponent,
+    UpdateUserDataComponent,
   ],
   imports: [
     BrowserModule,

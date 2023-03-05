@@ -1,0 +1,59 @@
+<div class="updateDataFormContainer">
+  <h3>Update your data</h3>
+  <form
+    [formGroup]="userDataFormGroup"
+    class="userDataInputForm"
+    (submit)="handleSubmit()"
+  >
+    <mat-form-field appearance="outline" class="formField">
+      <mat-label>How old are you?</mat-label>
+      <input type="text" matInput placeholder="" formControlName="age" />
+      <span matTextSuffix>years</span>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="formField">
+      <mat-label>Tell us your height</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder=""
+        formControlName="currentHeight"
+      />
+      <span matTextSuffix>cm</span>
+    </mat-form-field>
+    <mat-form-field appearance="outline" appearance="outline">
+      <mat-label>Tell us your weight</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder=""
+        formControlName="currentWeight"
+      />
+      <span matTextSuffix>kg</span>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>You are a</mat-label>
+      <mat-select value="male" formControlName="sex">
+        <mat-option value="male"> Male </mat-option>
+        <mat-option value="female"> Female </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Your activity level is</mat-label>
+      <mat-select value="sedentary" formControlName="activityLevel">
+        <mat-option value="sedentary"> Sedentary </mat-option>
+        <mat-option value="light"> Light </mat-option>
+        <mat-option value="moderate"> Moderate </mat-option>
+        <mat-option value="active"> Active </mat-option>
+        <mat-option value="extreme"> Extreme </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="looseGainPrompt">
+      <mat-label>You want to </mat-label>
+      <mat-button-toggle-group formControlName="weightGoal" class="buttonToggle">
+        <mat-button-toggle value="mildWeightLoss">Loose Weight</mat-button-toggle>
+        <mat-button-toggle value="mildWeightGain">Gain Weight</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <app-secondary-button type="submit" text="Update Data"></app-secondary-button>
+  </form>
+</div>

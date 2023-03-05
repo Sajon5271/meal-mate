@@ -26,7 +26,7 @@ export class LoginPageComponent implements OnInit {
   });
 
   ngOnInit() {
-    if (this.authService.isLoggedIn()) this.router.navigate(['home']);
+    if (this.authService.isLoggedIn()) this.router.navigate(['mealplan/today']);
     this.loginForm.valueChanges.subscribe(() => {
       if (this.loginForm.valid) {
         this.validDatas = true;

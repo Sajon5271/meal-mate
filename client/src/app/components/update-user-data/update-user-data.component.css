@@ -1,0 +1,17 @@
+.userDataInputForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+}
+.userDataInputForm > mat-form-field {
+  width: 90%;
+}
+.updateDataFormContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}

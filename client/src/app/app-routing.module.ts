@@ -9,6 +9,7 @@ import { SignupPageComponent } from './components/signup-page/signup-page.compon
 import { TodaysMealPlanComponent } from './components/todays-meal-plan/todays-meal-plan.component';
 import { UpdateMealPlanComponent } from './components/update-meal-plan/update-meal-plan.component';
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
+import { UpdateUserDataComponent } from './components/update-user-data/update-user-data.component';
 import { UserDataFormComponent } from './components/user-data-form/user-data-form.component';
 
 const routes: Routes = [
@@ -29,6 +30,11 @@ const routes: Routes = [
   {
     path: 'update-mealplan',
     component: UpdateMealPlanComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'update-user-data',
+    component: UpdateUserDataComponent,
     canActivate: [AuthGuard],
   },
   {
