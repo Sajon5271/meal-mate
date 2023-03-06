@@ -2,7 +2,7 @@ const UserHistory = require('../models/UserHistory');
 
 const getAllHistory = async (req, res, next) => {
   try {
-    const allHistory = await UserHistory.find({});
+    const allHistory = await UserHistory.find({ userID: req.currentUser._id });
     res.status(200).send(allHistory);
   } catch (err) {
     console.log(err);
@@ -25,9 +25,14 @@ const saveTodaysHistory = async (req, res, next) => {
   try {
     const todaysData = req.body;
     const todaysSavedData = await UserHistory.findOne({
+      userID: req.currentUser._id,
       recordDate: { $gte: new Date().toDateString() },
     });
-    if (!todaysSavedData) await UserHistory.create({ mealsData: todaysData });
+    if (!todaysSavedData)
+      await UserHistory.create({
+        userID: req.currentUser._id,
+        mealsData: todaysData,
+      });
     else {
       todaysSavedData.mealsData = todaysData;
       await todaysSavedData.save();

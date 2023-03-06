@@ -36,12 +36,17 @@ export class UpdateMealPlanComponent {
     'thursday',
     'friday',
   ];
+
+  everyMealCalorie: number[] = [];
+  wholeDayCalorie: number = 0;
+
   currentMealPlan: DailyMeals = {
     breakfast: [],
     lunch: [],
     snacks: [],
     dinner: [],
   };
+
   userMealPlan: FullMealPlan;
   fullMealDetails: WeeklyMeals = {
     saturday: this.currentMealPlan,
@@ -52,6 +57,7 @@ export class UpdateMealPlanComponent {
     thursday: this.currentMealPlan,
     friday: this.currentMealPlan,
   };
+
   constructor(
     private fetchData: FetchDataService,
     private mealService: MealsService,
@@ -122,6 +128,19 @@ export class UpdateMealPlanComponent {
     });
     return totalCalorie;
   }
+
+  calculateWholeDayCalorie() {
+    this.everyMealCalorie = [];
+    type objType = keyof typeof this.currentMealPlan;
+    for (const portion in this.currentMealPlan) {
+      this.everyMealCalorie.push(
+        this.calculateCalorie(this.currentMealPlan[portion as objType])
+      );
+    }
+    this.wholeDayCalorie = this.everyMealCalorie.reduce((a, b) => a + b, 0);
+    return this.wholeDayCalorie;
+  }
+
   recommendedCalorieIntake(daytime: string) {
     if (daytime === 'breakfast') return this.calorieNeeded * 0.25;
     if (daytime === 'lunch') return this.calorieNeeded * 0.35;
@@ -145,11 +164,14 @@ export class UpdateMealPlanComponent {
       ].filter((el) => el.mealId !== id);
   }
   updateMeals() {
-    console.log('here');
     const currentUser = this.fetchData.getLoggedInUser();
     this.fetchData.setMealPlan(this.userMealPlan).subscribe(() => {
       currentUser.mealPlan = this.userMealPlan;
       this.fetchData.updateLoggedInUser(currentUser);
     });
+  }
+  exd = false;
+  exceeding() {
+    this.exd = Math.abs(this.calorieNeeded - this.wholeDayCalorie) > 100;
   }
 }

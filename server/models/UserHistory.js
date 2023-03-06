@@ -4,7 +4,11 @@ const historySchema = mongoose.Schema({
   recordDate: {
     type: Date,
     required: true,
-    default: Date.now(),
+    default: Date.now,
+  },
+  userID: {
+    type: String,
+    required: true,
   },
   mealsData: {
     breakfast: [

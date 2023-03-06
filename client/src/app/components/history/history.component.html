@@ -1,4 +1,12 @@
 <h3>Your history</h3>
+<div
+  *ngIf="!HistoryWithMeals.length"
+  class="mediumText black-text"
+  style="padding: 30px"
+>
+  It seems you have no data yet. Please continue to use the app. We are happy to
+  have you here
+</div>
 <div *ngFor="let day of HistoryWithMeals; let i = index">
   <div class="date mediumText black-text">{{ dateArray[i] | date }}</div>
   <div

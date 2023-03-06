@@ -60,3 +60,7 @@
     height: 300px;
   }
 }
+
+.errorText {
+  color: red;
+}
