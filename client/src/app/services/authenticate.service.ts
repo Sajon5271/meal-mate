@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { AuthConfig, OAuthService } from 'angular-oauth2-oidc';
 import { User } from '../interfaces/User.interface';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { Router } from '@angular/router';
+import { FetchDataService } from './fetch-data.service';
 
 const googleOauthConfig: AuthConfig = {
   issuer: 'https://accounts.google.com',
@@ -30,7 +32,9 @@ export class AuthenticateService {
   constructor(
     private http: HttpClient,
     private readonly oAuthService: OAuthService,
-    private jwthelper: JwtHelperService
+    private jwthelper: JwtHelperService,
+    private router: Router,
+    private dataService: FetchDataService
   ) {}
 
   googleOAuthLogin(): any {
@@ -40,7 +44,18 @@ export class AuthenticateService {
         if (!this.oAuthService.hasValidAccessToken()) {
           this.oAuthService.initLoginFlow();
         } else {
-          this.oAuthService.loadUserProfile().then((userProfile) => {
+          this.oAuthService.loadUserProfile().then((userProfile: any) => {
+            this.loginUser({
+              email: userProfile.info.email,
+            }).subscribe((res) => {
+              localStorage.setItem('accessToken', res.accessToken);
+              this.dataService.getUser().subscribe((res) => {
+                localStorage.setItem('currentUserData', JSON.stringify(res));
+                if (!res.dataAlreadyGiven) this.router.navigate(['questions']);
+                else this.router.navigate(['mealplan/today']);
+              });
+            });
+            // this.oAuthService.silentRefresh()
             localStorage.setItem('google', JSON.stringify(userProfile));
             return userProfile;
             // this.signUpUser({email: })
@@ -67,7 +82,9 @@ export class AuthenticateService {
 
   signUpUser(user: {
     email: string;
-    password: string;
+    password?: string;
+    oAuthUser?: boolean;
+    name?: string;
   }): Observable<{ accessToken: string }> {
     return this.http.post<{ accessToken: string }>(
       `${this.baseUrl}/register`,
@@ -77,7 +94,7 @@ export class AuthenticateService {
 
   loginUser(user: {
     email: string;
-    password: string;
+    password?: string;
   }): Observable<{ accessToken: string }> {
     return this.http.post<{ accessToken: string }>(
       `${this.baseUrl}/login`,

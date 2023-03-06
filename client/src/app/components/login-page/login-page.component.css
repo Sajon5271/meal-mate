@@ -52,7 +52,7 @@
   left: -9%;
    */
 }
-.custom-shape-divider-bottom-1677761973 {
+.bottomGraphic {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -63,7 +63,7 @@
   transform: rotate(180deg);
 }
 
-.custom-shape-divider-bottom-1677761973 svg {
+.bottomGraphic svg {
   position: relative;
   display: block;
   width: calc(126% + 1.3px);
@@ -71,14 +71,23 @@
   transform: rotateY(180deg);
 }
 
-.custom-shape-divider-bottom-1677761973 .shape-fill {
+.bottomGraphic .shape-fill {
   fill: #6cc57c;
 }
 
 /** For mobile devices **/
 @media (max-width: 767px) {
-  .custom-shape-divider-bottom-1677761973 svg {
+  .bottomGraphic svg {
     width: calc(193% + 1.3px);
     height: 150px;
   }
+}
+
+.googleLoginButton {
+  width: 50vw;
+  height: auto;
+}
+
+.googleLoginButton:active {
+  content: url("/assets/google/google-login-pressed.png");
 }

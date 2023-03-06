@@ -35,14 +35,21 @@ const login = async (req, res, next) => {
     const user = await Users.findOne({ email: req.body.email });
     if (!user)
       return res.status(404).send({ error: '404', message: 'User not found' });
-    const match = await bcrypt.compare(req.body.password, user.password);
-    if (match) {
+    if (user.oAuthUser) {
       const accessToken = jwt.sign({ _id: user._id }, SECRET_KEY, {
         expiresIn: '30 days',
       });
       res.status(200).send({ accessToken });
     } else {
-      res.status(403).send({ error: '403', message: 'Wrong Password' });
+      const match = await bcrypt.compare(req.body.password, user.password);
+      if (match) {
+        const accessToken = jwt.sign({ _id: user._id }, SECRET_KEY, {
+          expiresIn: '30 days',
+        });
+        res.status(200).send({ accessToken });
+      } else {
+        res.status(403).send({ error: '403', message: 'Wrong Password' });
+      }
     }
   } catch (error) {
     console.log(error);

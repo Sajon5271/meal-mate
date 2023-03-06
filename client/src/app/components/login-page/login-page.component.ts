@@ -44,7 +44,6 @@ export class LoginPageComponent implements OnInit {
           localStorage.setItem('accessToken', res.accessToken);
           this.dataService.getUser().subscribe((res) => {
             localStorage.setItem('currentUserData', JSON.stringify(res));
-            console.log(res.dataAlreadyGiven);
             if (!res.dataAlreadyGiven) this.router.navigate(['questions']);
             else this.router.navigate(['mealplan/today']);
           });
@@ -58,8 +57,5 @@ export class LoginPageComponent implements OnInit {
   }
   googleOAuth() {
     this.authService.googleOAuthLogin();
-  }
-  facebookOAuth() {
-    this.authService.facebookOAuthLogin();
   }
 }
