@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -28,6 +28,7 @@ import { PickMealDialogueComponent } from './components/pick-meal-dialogue/pick-
 import { UpdateUserDataComponent } from './components/update-user-data/update-user-data.component';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { HistoryComponent } from './components/history/history.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -62,6 +63,12 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     FormsModule,
     ReactiveFormsModule,
     SocketIoModule.forRoot(config),
+    ServiceWorkerModule.register('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      // Register the ServiceWorker as soon as the application is stable
+      // or after 30 seconds (whichever comes first).
+      registrationStrategy: 'registerWhenStable:30000',
+    }),
   ],
   providers: [
     {
