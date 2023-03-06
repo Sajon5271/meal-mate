@@ -12,6 +12,7 @@ import { UpdateMealPlanComponent } from './components/update-meal-plan/update-me
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 import { UpdateUserDataComponent } from './components/update-user-data/update-user-data.component';
 import { UserDataFormComponent } from './components/user-data-form/user-data-form.component';
+import { DailyCalorieChartComponent } from './daily-calorie-chart/daily-calorie-chart.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -31,6 +32,11 @@ const routes: Routes = [
   {
     path: 'update-mealplan',
     component: UpdateMealPlanComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'chart',
+    component: DailyCalorieChartComponent,
     canActivate: [AuthGuard],
   },
   {
