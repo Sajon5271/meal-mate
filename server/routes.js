@@ -4,6 +4,7 @@ const UserController = require('./controllers/Users');
 const authMiddleware = require('./middlewares/auth');
 const generateMealPlan = require('./middlewares/mealPlanGenerator');
 const UserHistory = require('./controllers/UserHistory');
+const Notifications = require('./controllers/Notifications');
 //Meals
 router.post('/meal/createOne', MealController.createAMeal);
 router.post('/meal/createMany', MealController.createMeals);
@@ -44,5 +45,7 @@ router.post(
   authMiddleware,
   UserHistory.getLastSevenDaysHistory
 );
+
+router.post('/subscribeToNotification', Notifications.setASubscriber);
 
 module.exports = router;

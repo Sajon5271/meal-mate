@@ -86,12 +86,12 @@ export class AuthenticateService {
   }
 
   logOut() {
-    sessionStorage.clear();
-    localStorage.clear();
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('currentUserData');
   }
 
   isLoggedIn() {
-    const token = sessionStorage.getItem('accessToken');
+    const token = localStorage.getItem('accessToken');
     if (!token || this.jwthelper.isTokenExpired(token)) return false;
     else return true;
   }

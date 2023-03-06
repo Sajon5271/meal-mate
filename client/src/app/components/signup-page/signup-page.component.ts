@@ -45,7 +45,7 @@ export class SignupPageComponent implements OnInit {
     if (email && password)
       this.authService.signUpUser({ email, password }).subscribe({
         next: (res) => {
-          sessionStorage.setItem('accessToken', res.accessToken);
+          localStorage.setItem('accessToken', res.accessToken);
           this.dataService.getUser().subscribe((res) => {
             const anonData = this.dataService.getAnonymousUserData();
             if (anonData) {

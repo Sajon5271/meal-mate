@@ -41,7 +41,7 @@ export class LoginPageComponent implements OnInit {
     if (email && password) {
       this.authService.loginUser({ email, password }).subscribe({
         next: (res) => {
-          sessionStorage.setItem('accessToken', res.accessToken);
+          localStorage.setItem('accessToken', res.accessToken);
           this.dataService.getUser().subscribe((res) => {
             localStorage.setItem('currentUserData', JSON.stringify(res));
             console.log(res.dataAlreadyGiven);

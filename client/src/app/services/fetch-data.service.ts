@@ -62,6 +62,18 @@ export class FetchDataService {
       }
     );
   }
+  saveNotificationSub(data: any): Observable<{ msg: string }> {
+    const userID = this.getLoggedInUser()._id;
+    return this.http.post<{ msg: string }>(
+      this.baseUrl + '/subscribeToNotification',
+      { userID, subscriptionObject: data },
+      {
+        headers: {
+          Authorization: `Bearer ${this.getAuthToken()}`,
+        },
+      }
+    );
+  }
 
   getHistory(): Observable<MealHistory[]> {
     return this.http.get<MealHistory[]>(this.baseUrl + '/user-history', {
@@ -88,7 +100,7 @@ export class FetchDataService {
     });
   }
   private getAuthToken(): string | null {
-    return sessionStorage.getItem('accessToken');
+    return localStorage.getItem('accessToken');
   }
 
   getLoggedInUser(): User {

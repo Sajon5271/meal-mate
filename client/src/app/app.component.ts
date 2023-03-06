@@ -4,6 +4,7 @@ import { MealsService } from './services/meals.service';
 import { Socket } from 'ngx-socket-io';
 import { FetchDataService } from './services/fetch-data.service';
 import { SwPush } from '@angular/service-worker';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent implements OnInit {
     private mealsService: MealsService,
     private fetchData: FetchDataService,
     private ioMod: Socket,
-    readonly swPush: SwPush
+    readonly swPush: SwPush,
+    private router: Router
   ) {
     ioMod.on('saveTodaysData', () => {
       if (authClient.isLoggedIn()) {
@@ -35,8 +37,9 @@ export class AppComponent implements OnInit {
     this.mealsService.getAllMeal().subscribe((meals) => {
       localStorage.setItem('Meals', JSON.stringify(meals));
     });
-    this.swPush
-      .requestSubscription({ serverPublicKey: 'Hello' })
-      .then((res) => console.log(res));
+    this.swPush.notificationClicks.subscribe(({ action, notification }) => {
+      // TODO: Do something in response to notification click.
+      this.router.navigate(['mealplan/today']);
+    });
   }
 }
