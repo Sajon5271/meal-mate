@@ -1,6 +1,3 @@
-:host {
-  overflow: hidden;
-}
 .loginForm {
   display: flex;
   flex-direction: column;
@@ -8,11 +5,9 @@
   width: 100%;
 }
 .loginFormContainer {
-  position: fixed;
-  /* left: 50vw; */
   display: flex;
-  height: 100dvh;
-  width: 100dvw;
+  height: 100vh;
+  width: 100vw;
   flex-direction: column;
   justify-content: center;
   align-items: center;

@@ -3,6 +3,7 @@ import { AuthenticateService } from './services/authenticate.service';
 import { MealsService } from './services/meals.service';
 import { Socket } from 'ngx-socket-io';
 import { FetchDataService } from './services/fetch-data.service';
+import { SwPush } from '@angular/service-worker';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +17,8 @@ export class AppComponent implements OnInit {
     private authClient: AuthenticateService,
     private mealsService: MealsService,
     private fetchData: FetchDataService,
-    private ioMod: Socket
+    private ioMod: Socket,
+    readonly swPush: SwPush
   ) {
     ioMod.on('saveTodaysData', () => {
       if (authClient.isLoggedIn()) {
@@ -33,5 +35,8 @@ export class AppComponent implements OnInit {
     this.mealsService.getAllMeal().subscribe((meals) => {
       localStorage.setItem('Meals', JSON.stringify(meals));
     });
+    this.swPush
+      .requestSubscription({ serverPublicKey: 'Hello' })
+      .then((res) => console.log(res));
   }
 }
