@@ -33,7 +33,7 @@
 .titleText {
   display: flex;
   justify-content: space-between;
-  width: 95vw;
+  width: 90vw;
 }
 
 .notLoggedIn {

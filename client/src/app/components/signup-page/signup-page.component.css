@@ -8,6 +8,7 @@
 .signUpFormContainer {
   display: flex;
   height: 100vh;
+  width: 100vw;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -39,14 +40,6 @@
   /* height: 200px; */
 }
 
-.backGround {
-  position: absolute;
-  top: 50%;
-  left: -9%;
-  z-index: -999;
-  transform: scaleX(-1);
-}
-
 .bottomGraphic {
   position: absolute;
   bottom: 0;
@@ -76,4 +69,12 @@
     width: calc(193% + 1.3px);
     height: 150px;
   }
+}
+.googleLoginButton {
+  max-width: 200px;
+  height: auto;
+}
+
+.googleLoginButton:active {
+  content: url("/assets/google/google-login-pressed.png");
 }
