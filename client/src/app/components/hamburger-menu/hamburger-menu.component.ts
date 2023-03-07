@@ -23,8 +23,7 @@ export class HamburgerMenuComponent {
   ngOnInit() {}
 
   logOutUser() {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('currentUserData');
+    this.auth.logOut();
     this.router.navigate(['login']);
   }
 

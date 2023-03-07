@@ -2,7 +2,10 @@ const UserHistory = require('../models/UserHistory');
 
 const getAllHistory = async (req, res, next) => {
   try {
-    const allHistory = await UserHistory.find({ userID: req.currentUser._id });
+    const allHistory = await UserHistory.find({
+      userID: req.currentUser._id,
+      recordDate: { $lt: new Date().toDateString() },
+    }).sort({ recordDate: 'desc' });
     res.status(200).send(allHistory);
   } catch (err) {
     console.log(err);

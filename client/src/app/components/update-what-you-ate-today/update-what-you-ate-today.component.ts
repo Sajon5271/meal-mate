@@ -12,31 +12,13 @@ import { PickMealDialogueComponent } from '../pick-meal-dialogue/pick-meal-dialo
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-update-meal-plan',
-  templateUrl: './update-meal-plan.component.html',
-  styleUrls: ['./update-meal-plan.component.css'],
+  selector: 'app-update-what-you-ate-today',
+  templateUrl: './update-what-you-ate-today.component.html',
+  styleUrls: ['./update-what-you-ate-today.component.css'],
 })
-export class UpdateMealPlanComponent {
-  emptyMeal: Meal = {
-    _id: '',
-    mealCalorie: 0,
-    mealName: '',
-    mealPicture: '',
-    baseQuantity: 1,
-    measurementUnit: '',
-  };
+export class UpdateWhatYouAteTodayComponent {
   imageBase = 'http://localhost:3000/images/meals/';
   calorieNeeded = 0;
-  selected = 'saturday';
-  weekdays = [
-    'saturday',
-    'sunday',
-    'monday',
-    'tuesday',
-    'wednesday',
-    'thursday',
-    'friday',
-  ];
 
   everyMealCalorie: number[] = [];
   wholeDayCalorie: number = 0;
@@ -47,16 +29,11 @@ export class UpdateMealPlanComponent {
     snacks: [],
     dinner: [],
   };
-
-  userMealPlan: FullMealPlan;
-  fullMealDetails: WeeklyMeals = {
-    saturday: this.currentMealPlan,
-    sunday: this.currentMealPlan,
-    monday: this.currentMealPlan,
-    tuesday: this.currentMealPlan,
-    wednesday: this.currentMealPlan,
-    thursday: this.currentMealPlan,
-    friday: this.currentMealPlan,
+  currentMealPlanToSend: MealPlan = {
+    breakfast: [],
+    lunch: [],
+    snacks: [],
+    dinner: [],
   };
 
   constructor(
@@ -65,13 +42,13 @@ export class UpdateMealPlanComponent {
     public dialog: MatDialog,
     private router: Router
   ) {
-    this.userMealPlan = mealService.getUserMealPlan();
-    type objkeys = keyof typeof this.fullMealDetails;
-    this.weekdays.forEach((el) => {
-      this.fullMealDetails[el as objkeys] = this.mealService.getWithActualMeals(
-        this.userMealPlan[el as objkeys]
-      );
-    });
+    type objkeys = keyof typeof this.currentMealPlanToSend;
+    this.currentMealPlanToSend = JSON.parse(
+      localStorage.getItem('todaysMealData') || '""'
+    );
+    this.currentMealPlan = this.mealService.getWithActualMeals(
+      this.currentMealPlanToSend
+    );
   }
 
   ngOnInit() {
@@ -88,28 +65,17 @@ export class UpdateMealPlanComponent {
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result && result.selectedMeal) {
-        type objkeys = keyof typeof this.fullMealDetails;
-
         type daytimetype = keyof typeof this.currentMealPlan;
-        this.fullMealDetails[this.selected as objkeys][
-          daytime as daytimetype
-        ].push({ meal: result.selectedMeal, quantity: result.quantity });
-        this.userMealPlan[this.selected as objkeys][
-          daytime as daytimetype
-        ].push({ mealId: result.selectedMeal._id, quantity: result.quantity });
+        this.currentMealPlan[daytime as daytimetype].push({
+          meal: result.selectedMeal,
+          quantity: result.quantity,
+        });
+        this.currentMealPlanToSend[daytime as daytimetype].push({
+          mealId: result.selectedMeal._id,
+          quantity: result.quantity,
+        });
       }
     });
-  }
-
-  get today() {
-    return this.weekdays[(new Date().getDay() + 1) % 7];
-  }
-
-  changeSelected(selection: string) {
-    this.selected = selection;
-    type objkeys = keyof typeof this.fullMealDetails;
-
-    this.currentMealPlan = this.fullMealDetails[selection as objkeys];
   }
 
   get currentMealPlanArray() {
@@ -146,28 +112,24 @@ export class UpdateMealPlanComponent {
   }
 
   deleteMealFromPlan(daytime: string, id: string) {
-    type objkeys = keyof typeof this.fullMealDetails;
-
     type daytimetype = keyof typeof this.currentMealPlan;
     this.currentMealPlan[daytime as daytimetype] = this.currentMealPlan[
       daytime as daytimetype
     ].filter((el) => el.meal._id !== id);
-    this.fullMealDetails[this.selected as objkeys][daytime as daytimetype] =
-      this.currentMealPlan[daytime as daytimetype];
-    this.userMealPlan[this.selected as objkeys][daytime as daytimetype] =
-      this.userMealPlan[this.selected as objkeys][
-        daytime as daytimetype
-      ].filter((el) => el.mealId !== id);
+    this.currentMealPlanToSend[daytime as daytimetype] =
+      this.currentMealPlanToSend[daytime as daytimetype].filter(
+        (el) => el.mealId !== id
+      );
   }
   updateMeals() {
-    const currentUser = this.fetchData.getLoggedInUser();
-    this.fetchData.setMealPlan(this.userMealPlan).subscribe(() => {
-      currentUser.mealPlan = this.userMealPlan;
-      this.fetchData.updateLoggedInUser(currentUser);
-      // this.router.navigate(['generated-meal-plan']);
-    });
+    localStorage.setItem(
+      'todaysMealData',
+      JSON.stringify(this.currentMealPlanToSend)
+    );
+    this.fetchData
+      .sendTodaysData(this.currentMealPlanToSend)
+      .subscribe(() => this.router.navigate(['mealplan/today']));
   }
-  exd = false;
   exceeding() {
     return Math.abs(this.calorieNeeded - this.wholeDayCalorie) > 100;
   }

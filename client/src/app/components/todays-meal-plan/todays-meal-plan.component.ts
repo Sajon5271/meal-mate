@@ -36,8 +36,8 @@ export class TodaysMealPlanComponent {
     ];
     const day = new Date().getDay();
     const mealPlan: MealPlan = JSON.parse(
-      localStorage.getItem('currentUserData') || '""'
-    ).mealPlan[weekdays[day]];
+      localStorage.getItem('todaysMealData') || '""'
+    );
     this.todaysMeals = this.mealService.getWithActualMeals(mealPlan);
     const hourOfDay = new Date().getHours();
     if (hourOfDay < 10) this.nextMeal = 'breakfast';

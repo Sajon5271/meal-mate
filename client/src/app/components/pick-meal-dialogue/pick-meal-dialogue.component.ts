@@ -17,14 +17,14 @@ import { map, startWith } from 'rxjs/operators';
 })
 export class PickMealDialogueComponent {
   baseImagePath = 'http://localhost:3000/images/meals/';
-  mealStateControl = new FormControl<Meal | string>(this.data);
+  mealStateControl = new FormControl<Meal | string>('');
   quantityForm = new FormControl<number>(1);
   filteredMeals: Observable<Meal[]>;
   allMeals: Meal[] = [];
   currMeal?: Meal;
   constructor(
     public dialogRef: MatDialogRef<PickMealDialogueComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Meal,
+    @Inject(MAT_DIALOG_DATA) public data: { meal: Meal; quantity: number }[],
     private mealService: MealsService
   ) {
     this.filteredMeals = this.mealStateControl.valueChanges.pipe(
@@ -37,7 +37,12 @@ export class PickMealDialogueComponent {
   }
 
   ngOnInit() {
-    this.allMeals = this.mealService.getMealsfromStorage();
+    this.allMeals = this.mealService.getMealsfromStorage().filter((el) => {
+      for (let i in this.data) {
+        if (this.data[i].meal._id === el._id) return false;
+      }
+      return true;
+    });
   }
 
   onNoClick(): void {

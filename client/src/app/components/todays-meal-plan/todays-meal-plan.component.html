@@ -44,6 +44,12 @@
       <app-meal-list [mealList]="todaysMeals.dinner"></app-meal-list>
     </mat-tab>
   </mat-tab-group>
+  <div class="updateButton">
+    <app-secondary-button
+      text="Change what you ate today"
+      routerLink="/mealplan/today/update"
+    ></app-secondary-button>
+  </div>
 </div>
 <div class="custom-svg">
   <svg

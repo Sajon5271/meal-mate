@@ -1,12 +1,10 @@
-<h3>Update Meal Plan</h3>
-<mat-chip-listbox class="chips">
-  <mat-chip-option
-    *ngFor="let day of weekdays"
-    [selected]="day === today"
-    (selectionChange)="changeSelected(day)"
-    >{{ day | titlecase }}
-  </mat-chip-option>
-</mat-chip-listbox>
+<h3>Update what you ate today</h3>
+<div class="infoText">
+  This is where you update your data that we record. This is separate from what
+  your mealplan is for today. Updating this will affect your history, but will
+  not change your daily meal plan. To update mealplan please go
+  <a routerLink="/update-mealplan">here</a>
+</div>
 <div class="mediumText black-text dailyCalorieText">
   You need {{ calorieNeeded }} calories daily as per your data.
 </div>

@@ -5,6 +5,7 @@ import { Socket } from 'ngx-socket-io';
 import { FetchDataService } from './services/fetch-data.service';
 import { SwPush } from '@angular/service-worker';
 import { Router } from '@angular/router';
+import { MealPlan } from './interfaces/MealPlan.interface';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,15 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'Meal Mate';
+  weekdays = [
+    'saturday',
+    'sunday',
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+  ];
 
   constructor(
     private authClient: AuthenticateService,
@@ -22,13 +32,26 @@ export class AppComponent implements OnInit {
     readonly swPush: SwPush,
     private router: Router
   ) {
+    let data: MealPlan;
+    if (authClient.isLoggedIn()) {
+      data = JSON.parse(localStorage.getItem('todaysMealData') || '""');
+      if (!data) {
+        const today = this.weekdays[(new Date().getDay() + 1) % 7];
+        const userData = fetchData.getLoggedInUser().mealPlan || {};
+        type objType = keyof typeof userData;
+        data = userData[today as objType];
+        localStorage.setItem(
+          'todaysMealData',
+          JSON.stringify(userData[today as objType])
+        );
+      }
+    }
+
     ioMod.on('saveTodaysData', () => {
-      if (authClient.isLoggedIn()) {
-        const data = fetchData.getLoggedInUser().mealPlan?.sunday;
-        if (data)
-          fetchData.sendTodaysData(data).subscribe((res) => {
-            console.log('sent', res);
-          });
+      if (data) {
+        fetchData.sendTodaysData(data).subscribe((res) => {
+          console.log('sent', res);
+        });
       }
     });
   }

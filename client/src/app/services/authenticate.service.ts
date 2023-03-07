@@ -105,11 +105,15 @@ export class AuthenticateService {
   logOut() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('currentUserData');
+    localStorage.removeItem('google');
+    localStorage.removeItem('todaysMealData');
   }
 
   isLoggedIn() {
     const token = localStorage.getItem('accessToken');
     if (!token || this.jwthelper.isTokenExpired(token)) return false;
-    else return true;
+    // if (this.oAuthService.getIdTokenExpiration() < Date.now())
+    //   this.oAuthService.silentRefresh();
+    return true;
   }
 }

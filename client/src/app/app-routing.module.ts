@@ -12,7 +12,8 @@ import { UpdateMealPlanComponent } from './components/update-meal-plan/update-me
 import { UpdateProfileComponent } from './components/update-profile/update-profile.component';
 import { UpdateUserDataComponent } from './components/update-user-data/update-user-data.component';
 import { UserDataFormComponent } from './components/user-data-form/user-data-form.component';
-import { DailyCalorieChartComponent } from './daily-calorie-chart/daily-calorie-chart.component';
+import { DailyCalorieChartComponent } from './components/daily-calorie-chart/daily-calorie-chart.component';
+import { UpdateWhatYouAteTodayComponent } from './components/update-what-you-ate-today/update-what-you-ate-today.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -42,6 +43,11 @@ const routes: Routes = [
   {
     path: 'history',
     component: HistoryComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'mealplan/today/update',
+    component: UpdateWhatYouAteTodayComponent,
     canActivate: [AuthGuard],
   },
   {

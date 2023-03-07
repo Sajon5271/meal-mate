@@ -5,14 +5,17 @@ import { DailyMeals } from '../interfaces/DailyMeals.interface';
 import { FullMealPlan } from '../interfaces/FullMealPlan.interface';
 import { Meal } from '../interfaces/Meal.interface';
 import { MealPlan } from '../interfaces/MealPlan.interface';
+import { FetchDataService } from './fetch-data.service';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MealsService {
   private baseUrl = 'http://localhost:3000/meal';
+  
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private fetchData: FetchDataService) {}
   getAllMeal(): Observable<Meal[]> {
     return this.http.get<Meal[]>(this.baseUrl + '/all');
   }
@@ -69,5 +72,35 @@ export class MealsService {
       if (meal) thisDayMeal.dinner.push({ meal, quantity: d.quantity });
     }
     return thisDayMeal;
+  }
+
+  recommendMealToChange(
+    daytime: string,
+    mealPlan: DailyMeals,
+    calorieDiff: number
+  ) {
+    const cloneMeals = _.cloneDeep(mealPlan);
+    const looseWeight =
+      this.fetchData.getLoggedInUser().userData.weightGoal === 'mildWeightLoss';
+    type dailyMealKey = keyof typeof mealPlan;
+    if (daytime == 'breakfast') {
+      cloneMeals.breakfast = [];
+    } else if (daytime == 'lunch') {
+      cloneMeals.breakfast = [];
+      cloneMeals.lunch = [];
+    } else if (daytime == 'snacks') {
+      cloneMeals.breakfast = [];
+      cloneMeals.lunch = [];
+      cloneMeals.snacks = [];
+    } else if (daytime == 'dinner') {
+      cloneMeals.breakfast = [];
+      cloneMeals.lunch = [];
+      cloneMeals.snacks = [];
+      cloneMeals.dinner = [];
+    }
+    let mealsToRemove = [];
+    let lowestDiff = 9999;
+    for (let key in cloneMeals) {
+    }
   }
 }

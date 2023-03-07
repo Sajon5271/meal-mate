@@ -14,7 +14,7 @@ lunchScheduleRule.tz = 'Asia/Dhaka';
 snacksScheduleRule.hour = 17;
 snacksScheduleRule.minute = 00;
 snacksScheduleRule.tz = 'Asia/Dhaka';
-dinnerScheduleRule.hour = 8;
+dinnerScheduleRule.hour = 20;
 dinnerScheduleRule.minute = 30;
 dinnerScheduleRule.tz = 'Asia/Dhaka';
 

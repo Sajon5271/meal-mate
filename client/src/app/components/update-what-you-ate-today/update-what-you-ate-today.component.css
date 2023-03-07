@@ -111,4 +111,10 @@
   color: red !important;
 }
 
-
+.infoText {
+  padding: 10px;
+  border: #6cc57c 1px solid;
+  border-radius: 10px;
+  background-color: #dde480;
+  margin: 10px;
+}

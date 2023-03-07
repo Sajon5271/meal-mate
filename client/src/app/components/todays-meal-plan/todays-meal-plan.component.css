@@ -61,6 +61,8 @@
   }
 }
 
-.errorText {
-  color: red;
+.updateButton {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
 }

@@ -52,11 +52,4 @@ export class HistoryComponent {
     return totalCalorie;
   }
 
-  // recommendedCalorieIntake(daytime: string) {
-  //   if (daytime === 'breakfast') return this.calorieNeeded * 0.25;
-  //   if (daytime === 'lunch') return this.calorieNeeded * 0.35;
-  //   if (daytime === 'snacks') return this.calorieNeeded * 0.15;
-  //   if (daytime === 'dinner') return this.calorieNeeded * 0.25;
-  //   return '';
-  // }
 }
