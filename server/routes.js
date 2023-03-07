@@ -16,6 +16,7 @@ router.get('/meal/all/:mealTime', MealController.getSpecificTimeMeal);
 //Users
 router.post('/register', UserController.createNewUser);
 router.post('/login', UserController.login);
+router.post('/oAuthLogin', UserController.oauthLogin);
 router.post('/setData', authMiddleware, UserController.setUserData);
 router.post('/anonymousGenerate', UserController.anonUserData);
 

@@ -168,15 +168,14 @@ export class UpdateMealPlanComponent {
       });
       dialogRef.afterClosed().subscribe((result) => {
         if (!result) return;
-        else save = true;
-      });
-    } else save = true;
-    if (save) {
-      const currentUser = this.fetchData.getLoggedInUser();
-      this.fetchData.setMealPlan(this.userMealPlan).subscribe(() => {
-        currentUser.mealPlan = this.userMealPlan;
-        this.fetchData.updateLoggedInUser(currentUser);
-        // this.router.navigate(['generated-meal-plan']);
+        else {
+          const currentUser = this.fetchData.getLoggedInUser();
+          this.fetchData.setMealPlan(this.userMealPlan).subscribe(() => {
+            currentUser.mealPlan = this.userMealPlan;
+            this.fetchData.updateLoggedInUser(currentUser);
+          });
+          // this.router.navigate(['generated-meal-plan']);
+        }
       });
     }
   }

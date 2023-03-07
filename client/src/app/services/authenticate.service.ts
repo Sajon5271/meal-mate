@@ -7,6 +7,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { Router } from '@angular/router';
 import { FetchDataService } from './fetch-data.service';
 
+
 const googleOauthConfig: AuthConfig = {
   issuer: 'https://accounts.google.com',
   strictDiscoveryDocumentValidation: false,
@@ -45,9 +46,14 @@ export class AuthenticateService {
           this.oAuthService.initLoginFlow();
         } else {
           this.oAuthService.loadUserProfile().then((userProfile: any) => {
-            this.loginUser({
+            console.log(userProfile);
+            this.oAuthLogin({
               email: userProfile.info.email,
+              name: userProfile.given_name + ' ' + userProfile.family_name,
+              oAuthUser: true,
+              picturePath: userProfile.picture,
             }).subscribe((res) => {
+              console.log('Here');
               localStorage.setItem('accessToken', res.accessToken);
               this.dataService.getUser().subscribe((res) => {
                 localStorage.setItem('currentUserData', JSON.stringify(res));
@@ -78,6 +84,18 @@ export class AuthenticateService {
     //     }
     //   });
     // });
+  }
+
+  oAuthLogin(data: {
+    email: string;
+    name: string;
+    oAuthUser: boolean;
+    picturePath: string;
+  }): Observable<{ accessToken: string }> {
+    return this.http.post<{ accessToken: string }>(
+      this.baseUrl + '/oAuthLogin',
+      data
+    );
   }
 
   signUpUser(user: {

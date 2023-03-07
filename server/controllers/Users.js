@@ -57,6 +57,20 @@ const login = async (req, res, next) => {
     next();
   }
 };
+const oauthLogin = async (req, res, next) => {
+  try {
+    let user = await Users.findOne({ email: req.body.email });
+    if (!user) user = await Users.create(req.body);
+    const accessToken = jwt.sign({ _id: user._id }, SECRET_KEY, {
+      expiresIn: '30 days',
+    });
+    res.status(200).send({ accessToken });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({ error, message: 'Something went wrong' });
+    next();
+  }
+};
 
 const getUser = async (req, res, next) => {
   res.status(200).send(req.currentUser);
@@ -167,4 +181,5 @@ module.exports = {
   updateUserInfo,
   uploadPic,
   anonUserData,
+  oauthLogin,
 };

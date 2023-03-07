@@ -123,24 +123,26 @@ export class UpdateWhatYouAteTodayComponent {
       );
   }
   updateMeals() {
-    let save = false;
     if (this.exceeding()) {
       const dialogRef = this.dialog.open(ConfirmationDialogueComponent, {
         data: this.calorieNeeded - this.wholeDayCalorie > 0 ? 'less' : 'more',
       });
       dialogRef.afterClosed().subscribe((result) => {
+        console.log(result);
         if (!result) return;
-        else save = true;
+        else {
+          localStorage.setItem(
+            'todaysMealData',
+            JSON.stringify(this.currentMealPlanToSend)
+          );
+          this.fetchData
+            .sendTodaysData(this.currentMealPlanToSend)
+            .subscribe(() => {
+              console.log('here');
+              this.router.navigate(['mealplan/today']);
+            });
+        }
       });
-    } else save = true;
-    if (save) {
-      localStorage.setItem(
-        'todaysMealData',
-        JSON.stringify(this.currentMealPlanToSend)
-      );
-      this.fetchData
-        .sendTodaysData(this.currentMealPlanToSend)
-        .subscribe(() => this.router.navigate(['mealplan/today']));
     }
   }
   exceeding() {

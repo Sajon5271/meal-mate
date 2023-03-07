@@ -13,24 +13,5 @@ export class GoogleOauthComponent {
     this.oauth.googleOAuthLogin();
   }
 
-  ngOnInit() {
-    const userDatas = JSON.parse(
-      sessionStorage.getItem('id_token_claims_obj') || '""'
-    );
-    const newUser = {
-      email: userDatas.email,
-      name: userDatas.given_name + ' ' + userDatas.family_name,
-      oAuthUser: true,
-      picturePath: userDatas.picture,
-    };
-    this.oauth.signUpUser(newUser).subscribe({
-      next: (res) => {
-        localStorage.setItem('currentUserData', JSON.stringify(res));
-        this.router.navigate(['update-profile']);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
+  ngOnInit() {}
 }

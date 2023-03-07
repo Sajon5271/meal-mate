@@ -10,7 +10,11 @@ const schedule = require('node-schedule');
 const { scheduleAllTasks } = require('./utils/scheduler');
 
 const corsConfig = {
-  origin: ['http://localhost:4200', 'http://localhost:8080'],
+  origin: [
+    'http://localhost:4200',
+    'http://localhost:8080',
+    'http://127.0.0.1:8080',
+  ],
   credentials: true,
 };
 const app = express();

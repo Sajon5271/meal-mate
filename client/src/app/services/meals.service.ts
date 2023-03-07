@@ -6,14 +6,13 @@ import { FullMealPlan } from '../interfaces/FullMealPlan.interface';
 import { Meal } from '../interfaces/Meal.interface';
 import { MealPlan } from '../interfaces/MealPlan.interface';
 import { FetchDataService } from './fetch-data.service';
-import * as _ from 'lodash';
+// import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MealsService {
   private baseUrl = 'http://localhost:3000/meal';
-  
 
   constructor(private http: HttpClient, private fetchData: FetchDataService) {}
   getAllMeal(): Observable<Meal[]> {
@@ -74,33 +73,33 @@ export class MealsService {
     return thisDayMeal;
   }
 
-  recommendMealToChange(
-    daytime: string,
-    mealPlan: DailyMeals,
-    calorieDiff: number
-  ) {
-    const cloneMeals = _.cloneDeep(mealPlan);
-    const looseWeight =
-      this.fetchData.getLoggedInUser().userData.weightGoal === 'mildWeightLoss';
-    type dailyMealKey = keyof typeof mealPlan;
-    if (daytime == 'breakfast') {
-      cloneMeals.breakfast = [];
-    } else if (daytime == 'lunch') {
-      cloneMeals.breakfast = [];
-      cloneMeals.lunch = [];
-    } else if (daytime == 'snacks') {
-      cloneMeals.breakfast = [];
-      cloneMeals.lunch = [];
-      cloneMeals.snacks = [];
-    } else if (daytime == 'dinner') {
-      cloneMeals.breakfast = [];
-      cloneMeals.lunch = [];
-      cloneMeals.snacks = [];
-      cloneMeals.dinner = [];
-    }
-    let mealsToRemove = [];
-    let lowestDiff = 9999;
-    for (let key in cloneMeals) {
-    }
-  }
+  // recommendMealToChange(
+  //   daytime: string,
+  //   mealPlan: DailyMeals,
+  //   calorieDiff: number
+  // ) {
+  //   const cloneMeals = _.cloneDeep(mealPlan);
+  //   const looseWeight =
+  //     this.fetchData.getLoggedInUser().userData.weightGoal === 'mildWeightLoss';
+  //   type dailyMealKey = keyof typeof mealPlan;
+  //   if (daytime == 'breakfast') {
+  //     cloneMeals.breakfast = [];
+  //   } else if (daytime == 'lunch') {
+  //     cloneMeals.breakfast = [];
+  //     cloneMeals.lunch = [];
+  //   } else if (daytime == 'snacks') {
+  //     cloneMeals.breakfast = [];
+  //     cloneMeals.lunch = [];
+  //     cloneMeals.snacks = [];
+  //   } else if (daytime == 'dinner') {
+  //     cloneMeals.breakfast = [];
+  //     cloneMeals.lunch = [];
+  //     cloneMeals.snacks = [];
+  //     cloneMeals.dinner = [];
+  //   }
+  //   let mealsToRemove = [];
+  //   let lowestDiff = 9999;
+  //   for (let key in cloneMeals) {
+  //   }
+  // }
 }

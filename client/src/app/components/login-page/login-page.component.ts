@@ -56,6 +56,7 @@ export class LoginPageComponent implements OnInit {
     }
   }
   googleOAuth() {
+    console.log('here');
     this.authService.googleOAuthLogin();
   }
 }
