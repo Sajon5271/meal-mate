@@ -1,0 +1,17 @@
+.chart-container {
+  padding: 20px;
+  width: 100vw;
+}
+
+.welcomeUser {
+  /* padding: 20px; */
+  font-size: large;
+  width: 100vw;
+  text-align: center;
+  font-weight: bold;
+}
+
+.calorieConsumptionData {
+  width: 100vw;
+  text-align: center;
+}

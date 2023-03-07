@@ -40,12 +40,16 @@ router.put('/updateUserData', authMiddleware, UserController.setUserData);
 
 router.post('/saveTodaysData', authMiddleware, UserHistory.saveTodaysHistory);
 router.get('/user-history', authMiddleware, UserHistory.getAllHistory);
-router.post(
+router.get(
   '/user-history/7-days',
   authMiddleware,
   UserHistory.getLastSevenDaysHistory
 );
 
-router.post('/subscribeToNotification', Notifications.setASubscriber);
+router.post(
+  '/subscribeToNotification',
+  authMiddleware,
+  Notifications.setASubscriber
+);
 
 module.exports = router;

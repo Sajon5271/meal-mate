@@ -10,6 +10,10 @@ const historySchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  calorieNeeded: {
+    type: Number,
+    required: true,
+  },
   mealsData: {
     breakfast: [
       {

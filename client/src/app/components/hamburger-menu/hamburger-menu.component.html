@@ -12,6 +12,9 @@
     <button mat-menu-item routerLink="/register"><span>Sign Up</span></button>
   </div>
   <div *ngIf="loggedIn">
+    <button routerLink="/dashboard" mat-menu-item>
+      <span>Dashboard</span>
+    </button>
     <button routerLink="/generated-meal-plan" mat-menu-item>
       <span>All Meal Plans</span>
     </button>

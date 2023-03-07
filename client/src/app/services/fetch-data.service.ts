@@ -82,6 +82,13 @@ export class FetchDataService {
       },
     });
   }
+  get7dayHistory(): Observable<MealHistory[]> {
+    return this.http.get<MealHistory[]>(this.baseUrl + '/user-history/7-days', {
+      headers: {
+        Authorization: `Bearer ${this.getAuthToken()}`,
+      },
+    });
+  }
 
   uploadPicture(file: File): Observable<any> {
     const formData = new FormData();

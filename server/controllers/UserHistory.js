@@ -15,8 +15,12 @@ const getAllHistory = async (req, res, next) => {
 const getLastSevenDaysHistory = async (req, res, next) => {
   try {
     const allHistory = await UserHistory.find({
-      recordDate: { $gt: new Date().setDate(new Date().getDate() - 7) },
-    });
+      recordDate: {
+        $lt: new Date().toDateString(),
+      },
+    })
+      .sort({ recordDate: 'desc' })
+      .limit(7);
     res.status(200).send(allHistory);
   } catch (err) {
     console.log(err);
@@ -34,11 +38,14 @@ const saveTodaysHistory = async (req, res, next) => {
     if (!todaysSavedData)
       await UserHistory.create({
         userID: req.currentUser._id,
+        calorieNeeded: req.currentUser.userData.calculatedDailyCalorie,
         mealsData: todaysData,
       });
     else {
       todaysSavedData.mealsData = todaysData;
-      await todaysSavedData.save();
+      (todaysSavedData.calorieNeeded =
+        req.currentUser.userData.calculatedDailyCalorie),
+        await todaysSavedData.save();
     }
     res.status(201).send({ msg: 'Stored' });
   } catch (error) {

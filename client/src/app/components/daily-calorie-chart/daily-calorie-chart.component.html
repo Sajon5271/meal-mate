@@ -1,3 +1,16 @@
+<h3>Dashboard</h3>
+<div class="mediumText welcomeUser">Hello{{ userName }}</div>
 <div class="chart-container">
-  <canvas  id="MyChart" >{{ chart }}</canvas>
+  <canvas id="calorieChart">{{ calorieChart }}</canvas>
 </div>
+<div class="black-text calorieConsumptionData">
+  Last week's calorie consumption
+</div>
+
+<div class="chart-container">
+  <canvas id="progressChart">{{ progressChart }}</canvas>
+</div>
+
+<div class="black-text calorieConsumptionData">Your progress</div>
+
+<app-history></app-history>

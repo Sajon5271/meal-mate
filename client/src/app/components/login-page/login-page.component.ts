@@ -45,7 +45,7 @@ export class LoginPageComponent implements OnInit {
           this.dataService.getUser().subscribe((res) => {
             localStorage.setItem('currentUserData', JSON.stringify(res));
             if (!res.dataAlreadyGiven) this.router.navigate(['questions']);
-            else this.router.navigate(['mealplan/today']);
+            else this.router.navigate(['dashboard']);
           });
         },
         error: (err) => {

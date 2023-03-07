@@ -46,7 +46,6 @@ export class AppComponent implements OnInit {
         );
       }
     }
-
     ioMod.on('saveTodaysData', () => {
       if (data) {
         fetchData.sendTodaysData(data).subscribe((res) => {
