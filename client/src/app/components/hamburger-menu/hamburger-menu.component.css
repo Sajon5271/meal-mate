@@ -1,6 +1,7 @@
 .menuButton {
   position: absolute;
   right: 5%;
-  top: 3%;
+  top: 2%;
   z-index: 999;
+  background-color: rgba(255, 255, 255, 0.219);
 }

@@ -10,8 +10,8 @@
 </div>
 <div style="display: none">{{ calculateWholeDayCalorie() }}</div>
 <div
-  class="mediumText black-text dailyCalorieText"
-  [ngClass]="{ errorText: exceeding() }"
+  class="mediumText black-text dailyCalorieText stickyCalorieCount"
+  [ngClass]="{ 'errorText errorBackground': exceeding() }"
 >
   Total selected <b>{{ wholeDayCalorie }}</b> calories
 </div>

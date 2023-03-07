@@ -35,9 +35,19 @@ export class TodaysMealPlanComponent {
       'friday',
     ];
     const day = new Date().getDay();
-    const mealPlan: MealPlan = JSON.parse(
+    let mealPlan: MealPlan = JSON.parse(
       localStorage.getItem('todaysMealData') || '""'
     );
+    if (!mealPlan) {
+      const today = weekdays[(new Date().getDay() + 1) % 7];
+      const userData = this.fetchData.getLoggedInUser().mealPlan || {};
+      type objType = keyof typeof userData;
+      mealPlan = userData[today as objType];
+      localStorage.setItem(
+        'todaysMealData',
+        JSON.stringify(userData[today as objType])
+      );
+    }
     this.todaysMeals = this.mealService.getWithActualMeals(mealPlan);
     const hourOfDay = new Date().getHours();
     if (hourOfDay < 10) this.nextMeal = 'breakfast';

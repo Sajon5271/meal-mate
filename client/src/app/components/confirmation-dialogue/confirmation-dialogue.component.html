@@ -1,0 +1,21 @@
+<h1 class="warningText" mat-dialog-title>Warning</h1>
+<div mat-dialog-content>
+  <div *ngIf="data === 'more'">
+    You have selected more calorie than you need which will have an adverse
+    effect on your health. We recommend you reconsider and take some of the
+    items off to match your goal.
+  </div>
+  <div *ngIf="data === 'less'">
+    You have selected less calorie than you need which will have an adverse
+    effect on your health. We recommend you reconsider and add some more items
+    to match your goal.
+  </div>
+  <div>Do you still wish to update your meal plan?</div>
+</div>
+
+<div mat-dialog-actions class="buttonsAction">
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>
+    No, I am going to edit something
+  </button>
+  <button mat-button [mat-dialog-close]="justUpdate">Yes, save my plan</button>
+</div>

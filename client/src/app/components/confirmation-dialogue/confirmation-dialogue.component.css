@@ -1,0 +1,12 @@
+.buttonsAction {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.buttonsAction > * {
+  max-width: 50%;
+}
+
+.warningText {
+  color: red;
+}

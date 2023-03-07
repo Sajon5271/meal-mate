@@ -107,6 +107,7 @@ export class AuthenticateService {
     localStorage.removeItem('currentUserData');
     localStorage.removeItem('google');
     localStorage.removeItem('todaysMealData');
+    sessionStorage.clear();
   }
 
   isLoggedIn() {

@@ -10,6 +10,7 @@ import { WeeklyMeals } from 'src/app/interfaces/WeeklyMeals.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { PickMealDialogueComponent } from '../pick-meal-dialogue/pick-meal-dialogue.component';
 import { Router } from '@angular/router';
+import { ConfirmationDialogueComponent } from '../confirmation-dialogue/confirmation-dialogue.component';
 
 @Component({
   selector: 'app-update-meal-plan',
@@ -160,14 +161,26 @@ export class UpdateMealPlanComponent {
       ].filter((el) => el.mealId !== id);
   }
   updateMeals() {
-    const currentUser = this.fetchData.getLoggedInUser();
-    this.fetchData.setMealPlan(this.userMealPlan).subscribe(() => {
-      currentUser.mealPlan = this.userMealPlan;
-      this.fetchData.updateLoggedInUser(currentUser);
-      // this.router.navigate(['generated-meal-plan']);
-    });
+    let save = false;
+    if (this.exceeding()) {
+      const dialogRef = this.dialog.open(ConfirmationDialogueComponent, {
+        data: this.calorieNeeded - this.wholeDayCalorie > 0 ? 'less' : 'more',
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (!result) return;
+        else save = true;
+      });
+    } else save = true;
+    if (save) {
+      const currentUser = this.fetchData.getLoggedInUser();
+      this.fetchData.setMealPlan(this.userMealPlan).subscribe(() => {
+        currentUser.mealPlan = this.userMealPlan;
+        this.fetchData.updateLoggedInUser(currentUser);
+        // this.router.navigate(['generated-meal-plan']);
+      });
+    }
   }
-  exd = false;
+
   exceeding() {
     return Math.abs(this.calorieNeeded - this.wholeDayCalorie) > 100;
   }

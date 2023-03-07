@@ -111,4 +111,18 @@
   color: red !important;
 }
 
+.stickyCalorieCount {
+  position: sticky;
+  top: 20px;
+  z-index: 15;
+  border-radius: 5px;
+  border: black solid 1px;
+  background-color: rgba(255, 255, 255, 0.664);
+  text-align: center;
+  padding: 5px;
+}
 
+.errorBackground {
+  /* background-color: #b00020 !important; */
+  border: red solid 2px;
+}

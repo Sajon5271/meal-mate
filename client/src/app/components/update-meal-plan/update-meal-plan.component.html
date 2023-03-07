@@ -12,53 +12,58 @@
 </div>
 <div style="display: none">{{ calculateWholeDayCalorie() }}</div>
 <div
-  class="mediumText black-text dailyCalorieText"
-  [ngClass]="{ errorText: exceeding() }"
+  class="mediumText black-text dailyCalorieText stickyCalorieCount"
+  [ngClass]="{ 'errorText errorBackground': exceeding() }"
 >
   Total selected <b>{{ wholeDayCalorie }}</b> calories
 </div>
-<div
-  *ngFor="let foods of currentMealPlanArray; let mealIndex = index"
-  class="coupleMealsCard"
->
-  <div class="titleText">
-    <div class="mediumText black-text mealTime">
-      {{ foods.daytime | titlecase }}
-    </div>
-    <div class="calorieInfoWithCard">
-      <div>
-        Total : {{ everyMealCalorie[mealIndex] }}
-        calories
+<div class="">
+  <div
+    *ngFor="let foods of currentMealPlanArray; let mealIndex = index"
+    class="coupleMealsCard"
+  >
+    <div class="titleText">
+      <div class="mediumText black-text mealTime">
+        {{ foods.daytime | titlecase }}
       </div>
-    </div>
-  </div>
-  <div class="cardContainer">
-    <mat-card>
-      <div class="singleMealGroup">
-        <div *ngFor="let meal of foods.meals" class="singleFood">
-          <img mat-card-avatar src="{{ imageBase + meal.meal.mealPicture }}" />
-          <mat-label class="mealTitle">{{ meal.meal.mealName }}</mat-label>
-          <mat-label class="mealTitle"
-            >{{ meal.meal.mealCalorie }} calories</mat-label
-          >
-          <mat-label class="mealTitle"
-            >x{{ meal.quantity + " " + meal.meal.measurementUnit }}
-          </mat-label>
-          <button
-            mat-icon-button
-            color="warn"
-            (click)="deleteMealFromPlan(foods.daytime, meal.meal._id)"
-          >
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-        <div class="addButton">
-          <button mat-icon-button (click)="openDialog(foods.daytime)">
-            <mat-icon>add</mat-icon>
-          </button>
+      <div class="calorieInfoWithCard">
+        <div>
+          Total : {{ everyMealCalorie[mealIndex] }}
+          calories
         </div>
       </div>
-    </mat-card>
+    </div>
+    <div class="cardContainer">
+      <mat-card>
+        <div class="singleMealGroup">
+          <div *ngFor="let meal of foods.meals" class="singleFood">
+            <img
+              mat-card-avatar
+              src="{{ imageBase + meal.meal.mealPicture }}"
+            />
+            <mat-label class="mealTitle">{{ meal.meal.mealName }}</mat-label>
+            <mat-label class="mealTitle"
+              >{{ meal.meal.mealCalorie }} calories</mat-label
+            >
+            <mat-label class="mealTitle"
+              >x{{ meal.quantity + " " + meal.meal.measurementUnit }}
+            </mat-label>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="deleteMealFromPlan(foods.daytime, meal.meal._id)"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <div class="addButton">
+            <button mat-icon-button (click)="openDialog(foods.daytime)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
   </div>
 </div>
 <div class="updateButton">

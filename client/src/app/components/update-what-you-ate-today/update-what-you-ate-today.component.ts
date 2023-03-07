@@ -10,6 +10,7 @@ import { WeeklyMeals } from 'src/app/interfaces/WeeklyMeals.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { PickMealDialogueComponent } from '../pick-meal-dialogue/pick-meal-dialogue.component';
 import { Router } from '@angular/router';
+import { ConfirmationDialogueComponent } from '../confirmation-dialogue/confirmation-dialogue.component';
 
 @Component({
   selector: 'app-update-what-you-ate-today',
@@ -122,13 +123,25 @@ export class UpdateWhatYouAteTodayComponent {
       );
   }
   updateMeals() {
-    localStorage.setItem(
-      'todaysMealData',
-      JSON.stringify(this.currentMealPlanToSend)
-    );
-    this.fetchData
-      .sendTodaysData(this.currentMealPlanToSend)
-      .subscribe(() => this.router.navigate(['mealplan/today']));
+    let save = false;
+    if (this.exceeding()) {
+      const dialogRef = this.dialog.open(ConfirmationDialogueComponent, {
+        data: this.calorieNeeded - this.wholeDayCalorie > 0 ? 'less' : 'more',
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if (!result) return;
+        else save = true;
+      });
+    } else save = true;
+    if (save) {
+      localStorage.setItem(
+        'todaysMealData',
+        JSON.stringify(this.currentMealPlanToSend)
+      );
+      this.fetchData
+        .sendTodaysData(this.currentMealPlanToSend)
+        .subscribe(() => this.router.navigate(['mealplan/today']));
+    }
   }
   exceeding() {
     return Math.abs(this.calorieNeeded - this.wholeDayCalorie) > 100;

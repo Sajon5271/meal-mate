@@ -32,6 +32,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { DailyCalorieChartComponent } from './components/daily-calorie-chart/daily-calorie-chart.component';
 import { CommonModule } from '@angular/common';
 import { UpdateWhatYouAteTodayComponent } from './components/update-what-you-ate-today/update-what-you-ate-today.component';
+import { ConfirmationDialogueComponent } from './components/confirmation-dialogue/confirmation-dialogue.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
 
@@ -57,6 +58,7 @@ const config: SocketIoConfig = { url: 'http://localhost:3000', options: {} };
     HistoryComponent,
     DailyCalorieChartComponent,
     UpdateWhatYouAteTodayComponent,
+    ConfirmationDialogueComponent,
   ],
   imports: [
     BrowserModule,
