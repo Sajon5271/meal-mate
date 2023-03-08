@@ -25,6 +25,7 @@ export class LoadingInterceptor implements HttpInterceptor {
     this.loadingService.setLoading(true);
     return next.handle(request).pipe(
       finalize(() => {
+        console.log('processed');
         this.totalRequests--;
         if (this.totalRequests == 0) {
           this.loadingService.setLoading(false);
