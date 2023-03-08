@@ -2,6 +2,7 @@ const UserHistory = require('../models/UserHistory');
 
 const getAllHistory = async (req, res, next) => {
   try {
+    console.log('here');
     const allHistory = await UserHistory.find({
       userID: req.currentUser._id,
       recordDate: { $lt: new Date().toDateString() },

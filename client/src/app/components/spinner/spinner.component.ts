@@ -8,5 +8,6 @@ import { LoaderService } from '../../services/loader.service';
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class SpinnerComponent {
-  constructor(public loader: LoaderService) {}
+  constructor(public loader: LoaderService) {
+  }
 }

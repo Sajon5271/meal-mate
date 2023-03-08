@@ -23,7 +23,6 @@ export class DailyCalorieChartComponent {
   ) {
     fetchData.get7dayHistory().subscribe((res) => {
       this.UserHistory = res;
-      console.log(this.UserHistory);
       this.createChart();
     });
   }
@@ -62,7 +61,7 @@ export class DailyCalorieChartComponent {
     ];
     const allMeals = this.UserHistory.map((el) => {
       return this.mealService.getWithActualMeals(el.mealsData);
-    });
+    }).reverse();
     const allCalories: number[] = [];
     allMeals.forEach((el, idx) =>
       allCalories.push(
@@ -77,10 +76,8 @@ export class DailyCalorieChartComponent {
       (colors.reduce((a, b, idx) => (colors[idx] === 'green' ? a + 1 : a), 0) /
         7) *
       100;
-    console.log(achievePercent);
     const minY = Math.min(...allCalories);
     const maxY = Math.max(...allCalories);
-    console.log(allCalories);
     this.calorieChart = new Chart('calorieChart', {
       type: 'bar', //this denotes tha type of chart
 

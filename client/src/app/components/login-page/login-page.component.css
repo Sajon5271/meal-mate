@@ -92,3 +92,9 @@
 .googleLoginButton:active {
   content: url("/assets/google/google-login-pressed.png");
 }
+.buttonGoogle {
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  background-color: inherit;
+}
