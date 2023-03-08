@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { Subject, takeUntil } from 'rxjs';
 import { DailyMeals } from 'src/app/interfaces/DailyMeals.interface';
 import { Meal } from 'src/app/interfaces/Meal.interface';
 import { MealHistory } from 'src/app/interfaces/MealHistory.interface';
@@ -12,19 +13,22 @@ import { MealsService } from 'src/app/services/meals.service';
   templateUrl: './daily-calorie-chart.component.html',
   styleUrls: ['./daily-calorie-chart.component.css'],
 })
-export class DailyCalorieChartComponent {
+export class DailyCalorieChartComponent implements OnDestroy {
   calorieChart: any;
   progressChart: any;
-
+  private destroy$: Subject<void> = new Subject<void>();
   UserHistory: MealHistory[] = [];
   constructor(
     private fetchData: FetchDataService,
     private mealService: MealsService
   ) {
-    fetchData.get7dayHistory().subscribe((res) => {
-      this.UserHistory = res;
-      this.createChart();
-    });
+    fetchData
+      .get7dayHistory()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res) => {
+        this.UserHistory = res;
+        this.createChart();
+      });
   }
   ngOnInit() {}
   calculateCalorie(
@@ -70,10 +74,13 @@ export class DailyCalorieChartComponent {
       )
     );
     const colors: string[] = allCalories.map((el) =>
-      Math.abs(el) < 100 ? 'green' : 'red'
+      Math.abs(el) < 100 ? '#6CC57C' : '#EB7070'
     );
     const achievePercent =
-      (colors.reduce((a, b, idx) => (colors[idx] === 'green' ? a + 1 : a), 0) /
+      (colors.reduce(
+        (a, b, idx) => (colors[idx] === '#6CC57C' ? a + 1 : a),
+        0
+      ) /
         7) *
       100;
     const minY = Math.min(...allCalories);
@@ -133,7 +140,7 @@ export class DailyCalorieChartComponent {
     this.progressChart = new Chart('progressChart', {
       type: 'doughnut',
       data: {
-        labels: ['Achieved', ''],
+        labels: ['Achieved', 'Missed'],
         datasets: [
           {
             label: 'percent',
@@ -163,5 +170,10 @@ export class DailyCalorieChartComponent {
   get userName() {
     const usrName = this.fetchData.getLoggedInUser().name;
     return usrName ? `, ${usrName}` : '';
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
