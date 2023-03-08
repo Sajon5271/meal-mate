@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subject, takeUntil, first } from 'rxjs';
 import { DailyMeals } from 'src/app/interfaces/DailyMeals.interface';
 import { Meal } from 'src/app/interfaces/Meal.interface';
 import { MealHistory } from 'src/app/interfaces/MealHistory.interface';
@@ -11,29 +12,34 @@ import { MealsService } from 'src/app/services/meals.service';
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css'],
 })
-export class HistoryComponent {
+export class HistoryComponent implements OnDestroy {
   imageBase = 'http://localhost:3000/images/meals/';
   History: MealHistory[] = [];
   HistoryWithMeals: DailyMeals[] = [];
   dateArray: Date[] = [];
+
+  private destroy$: Subject<void> = new Subject<void>();
   constructor(
-    private fetchService: FetchDataService,
+    public fetchService: FetchDataService,
     private mealService: MealsService
   ) {
-    fetchService.getHistory().subscribe((res) => {
-      this.History = res;
-      this.History.forEach((el) => {
-        this.dateArray.push(el.recordDate);
-        this.HistoryWithMeals.push(
-          mealService.getWithActualMeals(el.mealsData)
-        );
+    fetchService
+      .getHistory()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((res) => {
+        this.History = res;
+        this.History.forEach((el) => {
+          this.dateArray.push(el.recordDate);
+          this.HistoryWithMeals.push(
+            mealService.getWithActualMeals(el.mealsData)
+          );
+        });
       });
-    });
   }
 
-  getCurrentMealPlanArray(mealplan: DailyMeals) {
+  getCurrentMealPlanArray(mealHistory: DailyMeals) {
     const temp = [];
-    for (const [daytime, meals] of Object.entries(mealplan)) {
+    for (const [daytime, meals] of Object.entries(mealHistory)) {
       temp.push({ daytime, meals });
     }
     return temp;
@@ -52,4 +58,8 @@ export class HistoryComponent {
     return totalCalorie;
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 }

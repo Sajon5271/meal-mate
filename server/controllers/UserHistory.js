@@ -16,6 +16,7 @@ const getAllHistory = async (req, res, next) => {
 const getLastSevenDaysHistory = async (req, res, next) => {
   try {
     const allHistory = await UserHistory.find({
+      userID: req.currentUser._id,
       recordDate: {
         $lt: new Date().toDateString(),
       },
