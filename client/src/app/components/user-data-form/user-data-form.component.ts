@@ -35,7 +35,7 @@ export class UserDataFormComponent implements OnInit {
     activityLevel: ['sedentary', Validators.required],
   });
   weightGoalFormGroup = this._formBuilder.group({
-    weightGoal: ['mildWeightLoss', Validators.required],
+    weightGoal: ['balance', Validators.required],
   });
 
   formGroupArray = [
