@@ -15,3 +15,42 @@
   width: 100vw;
   text-align: center;
 }
+
+.bottomGraphic {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  z-index: -99;
+  transform: rotate(180deg);
+}
+
+.bottomGraphic svg {
+  position: relative;
+  display: block;
+  width: calc(126% + 1.3px);
+  height: 231px;
+  transform: rotateY(180deg);
+}
+
+.bottomGraphic .shape-fill {
+  fill: #6cc57c;
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+  .bottomGraphic svg {
+    width: calc(193% + 1.3px);
+    height: 150px;
+  }
+}
+
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

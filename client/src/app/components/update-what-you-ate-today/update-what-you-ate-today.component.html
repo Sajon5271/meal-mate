@@ -6,11 +6,12 @@
   <a routerLink="/update-mealplan">here</a>
 </div>
 <div class="mediumText black-text dailyCalorieText">
-  You need {{ calorieNeeded }} calories daily as per your data.
+  You need {{ calorieNeeded | number : "1.0-0" }} calories daily as per your
+  data.
 </div>
 <div style="display: none">{{ calculateWholeDayCalorie() }}</div>
 <div
-  class="mediumText black-text dailyCalorieText stickyCalorieCount"
+  class="mediumText selectedCalorieText stickyCalorieCount"
   [ngClass]="{ 'errorText errorBackground': exceeding() }"
 >
   Total selected <b>{{ wholeDayCalorie }}</b> calories

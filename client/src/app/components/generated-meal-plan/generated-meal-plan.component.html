@@ -1,3 +1,4 @@
+<div class="paddingTop"></div>
 <h3>Your Meal Plan</h3>
 <div *ngIf="!loggedIn" class="notLoggedIn">
   You are not logged in. You can't edit or track your meal plans. To get the
@@ -13,7 +14,8 @@
   </mat-chip-option>
 </mat-chip-listbox>
 <div class="mediumText black-text dailyCalorieText">
-  You need {{ calorieNeeded }} calories daily as per your data.
+  You need {{ calorieNeeded | number : "1.0-0" }} calories daily as per your
+  data.
 </div>
 <div *ngFor="let foods of currentMealPlanArray" class="coupleMealsCard">
   <div class="titleText">
@@ -22,10 +24,7 @@
     </div>
     <div class="calorieInfoWithCard">
       <div>
-        Total : {{ calculateCalorie(foods.meals) }} /
-        {{
-          recommendedCalorieIntake(foods.daytime) | number : "1.0-0"
-        }}
+        Total : {{ calculateCalorie(foods.meals) }}
         calories
       </div>
     </div>

@@ -131,19 +131,23 @@ export class UpdateWhatYouAteTodayComponent {
         console.log(result);
         if (!result) return;
         else {
-          localStorage.setItem(
-            'todaysMealData',
-            JSON.stringify(this.currentMealPlanToSend)
-          );
-          this.fetchData
-            .sendTodaysData(this.currentMealPlanToSend)
-            .subscribe(() => {
-              console.log('here');
-              this.router.navigate(['mealplan/today']);
-            });
+          this.updateData();
         }
       });
+    } else {
+      this.updateData();
     }
+  }
+
+  updateData() {
+    localStorage.setItem(
+      'todaysMealData',
+      JSON.stringify(this.currentMealPlanToSend)
+    );
+    this.fetchData.sendTodaysData(this.currentMealPlanToSend).subscribe(() => {
+      console.log('here');
+      this.router.navigate(['mealplan/today']);
+    });
   }
   exceeding() {
     return Math.abs(this.calorieNeeded - this.wholeDayCalorie) > 100;

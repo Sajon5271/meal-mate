@@ -4,6 +4,7 @@
   overflow-y: scroll;
   flex-wrap: nowrap;
   margin-left: 20px;
+  padding: 15px;
   /* margin-bottom: 20px; */
 }
 
@@ -28,7 +29,7 @@
 .todayContainer {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 .custom-svg {
   position: absolute;

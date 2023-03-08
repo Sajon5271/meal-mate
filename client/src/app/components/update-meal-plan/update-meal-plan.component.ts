@@ -161,7 +161,6 @@ export class UpdateMealPlanComponent {
       ].filter((el) => el.mealId !== id);
   }
   updateMeals() {
-    let save = false;
     if (this.exceeding()) {
       const dialogRef = this.dialog.open(ConfirmationDialogueComponent, {
         data: this.calorieNeeded - this.wholeDayCalorie > 0 ? 'less' : 'more',
@@ -169,15 +168,20 @@ export class UpdateMealPlanComponent {
       dialogRef.afterClosed().subscribe((result) => {
         if (!result) return;
         else {
-          const currentUser = this.fetchData.getLoggedInUser();
-          this.fetchData.setMealPlan(this.userMealPlan).subscribe(() => {
-            currentUser.mealPlan = this.userMealPlan;
-            this.fetchData.updateLoggedInUser(currentUser);
-          });
-          // this.router.navigate(['generated-meal-plan']);
+          this.updateData();
         }
       });
-    }
+    } else this.updateData();
+  }
+
+  updateData() {
+    const currentUser = this.fetchData.getLoggedInUser();
+    this.fetchData.setMealPlan(this.userMealPlan).subscribe(() => {
+      currentUser.mealPlan = this.userMealPlan;
+      this.fetchData.updateLoggedInUser(currentUser);
+      location.reload();
+    });
+    // this.router.navigate(['generated-meal-plan']);
   }
 
   exceeding() {

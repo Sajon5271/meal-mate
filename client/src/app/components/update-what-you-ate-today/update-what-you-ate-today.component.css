@@ -125,7 +125,7 @@
   z-index: 15;
   border-radius: 5px;
   border: black solid 1px;
-  background-color: rgba(255, 255, 255, 0.664);
+  background-color: rgba(255, 255, 255, 0.925);
   text-align: center;
   padding: 5px;
 }
@@ -133,4 +133,9 @@
 .errorBackground {
   /* background-color: #b00020 !important; */
   border: red solid 2px;
+}
+.selectedCalorieText {
+  margin: 10px;
+  font-size: larger;
+  color: #4c9e4c;
 }
