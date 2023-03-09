@@ -7,12 +7,16 @@
   <div class="black-text calorieConsumptionData">
     Last week's calorie consumption
   </div>
-  
+
   <div class="chart-container">
     <canvas id="progressChart">{{ progressChart }}</canvas>
   </div>
-  
+
   <div class="black-text calorieConsumptionData">Your progress</div>
+  <app-secondary-button
+    routerLink="/mealplan/today"
+    text="Check Out your meal plan for today"
+  ></app-secondary-button>
 </div>
 <div class="bottomGraphic">
   <svg

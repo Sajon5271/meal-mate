@@ -63,6 +63,7 @@ section {
   justify-content: center;
   align-items: center;
   padding: 30px;
+
 }
 
 .textInfo {
@@ -107,3 +108,8 @@ section {
   font-size: larger;
   font-weight: 500;
 }
+
+.mealMate {
+  font-family: Pacifico;
+}
+

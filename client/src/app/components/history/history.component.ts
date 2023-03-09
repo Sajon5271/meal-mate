@@ -57,6 +57,16 @@ export class HistoryComponent implements OnDestroy {
     });
     return totalCalorie;
   }
+  calculateWholeDayCalorie(wholeDayMealPlan: DailyMeals) {
+    const everyMealCalorie = [];
+    let currentMealPlan = wholeDayMealPlan;
+    type objType = keyof typeof currentMealPlan;
+    let total = 0;
+    for (const portion in currentMealPlan) {
+      total += this.calculateCalorie(currentMealPlan[portion as objType]);
+    }
+    return total;
+  }
 
   ngOnDestroy(): void {
     this.destroy$.next();

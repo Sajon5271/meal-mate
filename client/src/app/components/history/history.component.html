@@ -10,6 +10,9 @@
 </div>
 <div *ngFor="let day of HistoryWithMeals; let i = index">
   <div class="date mediumText black-text">{{ dateArray[i] | date }}</div>
+  <div class="date mediumText black-text">
+    Calorie consumed: {{ calculateWholeDayCalorie(day) }}
+  </div>
   <div
     *ngFor="let foods of getCurrentMealPlanArray(day)"
     class="coupleMealsCard"
