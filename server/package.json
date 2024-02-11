@@ -15,7 +15,7 @@
     "express-fileupload": "^1.4.0",
     "fitness-calculator": "^1.1.0",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.0.0",
+    "mongoose": "^8.0.0",
     "node-schedule": "^2.1.1",
     "socket.io": "^4.6.1",
     "web-push": "^3.5.0"
